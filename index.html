@@ -43,19 +43,27 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 10px;}
 .hero-venue{font-size:13px;color:var(--point);letter-spacing:.1em;margin:0;}
 .orn{color:var(--point);font-size:20px;margin-bottom:24px;}
 
-/* ===== 편지 봉투 (back → paper → front 순서로 겹침, 실측 비율 반영) ===== */
-.letter-box{position:relative;width:92%;max-width:340px;margin:0 auto;}
-.letter-back{width:100%;display:block;position:relative;z-index:1;}
-.letter-paper-wrap{
-  position:absolute;left:50%;bottom:0;width:93%;z-index:2;
-  transform:translate(-50%,55%);
-  transition:transform 1.15s cubic-bezier(.16,1,.3,1);
+/* ===== 편지 봉투 영역 (외부광선 20% 및 원본 100% 비율 적용) ===== */
+.letter-box{position:relative;width:100%;max-width:380px;margin:0 auto;}
+.letter-back{
+  width:100%;
+  display:block;
+  position:relative;
+  z-index:1;
+  filter: drop-shadow(0 0 15px rgba(94, 103, 110, 0.2));
 }
-.letter-box.active .letter-paper-wrap{ transform:translate(-50%,0%); }
+.letter-paper-wrap{
+  position:absolute;left:50%;bottom:0;width:95%;z-index:2;
+  transform:translate(-50%, 60%);
+  transition:transform 1.2s cubic-bezier(.16,1,.3,1);
+}
+.letter-box.active .letter-paper-wrap{ transform:translate(-50%, 5%); }
 .letter-paper-img{width:100%;display:block;}
-.letter-text{position:absolute;inset:0;padding:16% 13% 8%;display:flex;flex-direction:column;text-align:center;}
-.msg{font-size:11px;color:var(--ink);white-space:pre-line;margin:0;line-height:1.65;}
-.parents{font-size:10px;color:var(--ink);display:flex;flex-direction:column;gap:3px;border-top:1px solid #e2e8f0;padding-top:8px;margin-top:auto;}
+
+/* 편지지 내부 텍스트 및 부모님 성함 영역 패딩 최적화 */
+.letter-text{position:absolute;inset:0;padding:15% 12% 10%;display:flex;flex-direction:column;justify-content:space-between;text-align:center;}
+.msg{font-size:11.5px;color:var(--ink);white-space:pre-line;margin:0;line-height:1.65;}
+.parents{font-size:11px;color:var(--ink);display:flex;flex-direction:column;gap:4px;border-top:1px solid #cbd5e1;padding-top:10px;margin-top:auto;}
 .letter-front{position:absolute;left:0;bottom:0;width:100%;z-index:3;pointer-events:none;display:block;}
 
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
@@ -66,7 +74,6 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 10px;}
 .dday{font-size:14px;color:var(--point);letter-spacing:.05em;margin-bottom:28px;}
 .dday b{font-size:22px;font-family:'Nanum Myeongjo',serif;margin:0 3px;}
 
-/* ===== 캘린더: table-layout:fixed로 7칸 동일폭 고정 (여백 버그 수정) ===== */
 table.cal{width:100%;table-layout:fixed;border-collapse:collapse;font-size:13px;color:var(--ink);}
 table.cal th,table.cal td{width:14.2857%;text-align:center;}
 table.cal th{padding:8px 0;font-weight:500;color:var(--point);}
@@ -114,11 +121,9 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
     <div class="orn">❋</div>
 
     <div class="letter-box" id="letterBox">
-      <!-- 깃허브에 올린 파일명(letter_back.png)으로 경로 지정 -->
       <img class="letter-back" src="letter_back.png" alt="뒷봉투">
       
       <div class="letter-paper-wrap">
-        <!-- 깃허브에 올린 파일명(letter_paper.png)으로 경로 지정 -->
         <img class="letter-paper-img" src="letter_paper.png" alt="편지지">
         <div class="letter-text">
           <p class="msg">늘 함께일 것을 알았기에
@@ -136,7 +141,6 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
         </div>
       </div>
 
-      <!-- 깃허브에 올린 파일명(letter_front.png)으로 경로 지정 -->
       <img class="letter-front" src="letter_front.png" alt="앞봉투">
     </div>
   </section>
