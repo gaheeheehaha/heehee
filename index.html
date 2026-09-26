@@ -11,16 +11,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#ffffff; --ink:#243240; --ink-soft:#5b6b78;
+  --bg:#bfc7d0; --ink:#243240; --ink-soft:#5b6b78;
   --ice:#8db3c6; --ice-deep:#3f5c6e; --rose:#b5717a;
-  --line:#bcd0dc; --card:#cad1d8;
+  --line:#b0bac3; --card:#dfe3e8;
   padding-top:env(safe-area-inset-top,0px);
   padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){ --bg:#ffffff; --ink:#243240; --ink-soft:#5b6b78; --card:#cad1d8; --line:#bcd0dc; }
+  :root:not([data-theme="light"]){ --bg:#bfc7d0; --ink:#243240; --ink-soft:#5b6b78; --card:#dfe3e8; --line:#b0bac3; }
 }
-:root[data-theme="dark"]{ --bg:#ffffff; --ink:#243240; --ink-soft:#5b6b78; --card:#cad1d8; --line:#bcd0dc; }
+:root[data-theme="dark"]{ --bg:#bfc7d0; --ink:#243240; --ink-soft:#5b6b78; --card:#dfe3e8; --line:#b0bac3; }
 *{box-sizing:border-box;}
 html{scroll-padding-top:env(safe-area-inset-top,0px);}
 
@@ -37,7 +37,16 @@ body{
 }
 
 h1,h2,.serif{font-family:'Nanum Myeongjo',serif;}
-.wrap{max-width:480px;margin:0 auto;position:relative;background:var(--card);}
+
+/* 모청 카드 외부광선 효과 적용 (#5e676e, 투명도/범위 50%) */
+.wrap{
+  max-width:480px;
+  margin:0 auto;
+  position:relative;
+  background:var(--card);
+  box-shadow: 0 0 30px rgba(94, 103, 110, 0.5);
+}
+
 section{padding:64px 28px;text-align:center;border-bottom:1px solid var(--line);}
 h2{font-size:15px;letter-spacing:.4em;color:var(--ice-deep);font-weight:700;margin:0 0 34px;}
 
