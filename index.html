@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>신랑 ♥ 신부 결혼합니다</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f8fa; --ink:#243240; --ink-soft:#5b6b78;
+  --ice:#8db3c6; --ice-deep:#3f5c6e; --rose:#b5717a;
+  --line:#dde5ea; --card:#ffffff;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#0f1620; --ink:#eef2f5; --ink-soft:#a7b4bd; --card:#182330; --line:#2a3846; }
+}
+:root[data-theme="dark"]{ --bg:#0f1620; --ink:#eef2f5; --ink-soft:#a7b4bd; --card:#182330; --line:#2a3846; }
+*{box-sizing:border-box;}
+html{scroll-padding-top:env(safe-area-inset-top,0px);}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans KR',sans-serif;font-weight:300;line-height:1.8;overflow-x:hidden;}
+h1,h2,.serif{font-family:'Nanum Myeongjo',serif;}
+.wrap{max-width:480px;margin:0 auto;position:relative;background:var(--bg);}
+section{padding:64px 28px;text-align:center;border-bottom:1px solid var(--line);}
+h2{font-size:15px;letter-spacing:.4em;color:var(--ice-deep);font-weight:700;margin:0 0 34px;}
+
+/* snow */
+#snow{position:fixed;inset:0;pointer-events:none;z-index:5;overflow:hidden;}
+.flake{position:absolute;top:-10px;color:#ffffffcc;font-size:14px;animation:fall linear infinite;}
+@media (prefers-color-scheme: dark){ .flake{color:#ffffff55;} }
+@keyframes fall{to{transform:translateY(110vh) translateX(var(--dx,0));}}
+
+/* hero */
+.hero{position:relative;padding:0;height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;background:linear-gradient(180deg,#e9f1f5,var(--bg));}
+@media (prefers-color-scheme: dark){ .hero{background:linear-gradient(180deg,#111b26,var(--bg));} }
+.photo-frame{width:230px;height:290px;border:1px solid var(--ice);border-radius:2px;display:flex;align-items:center;justify-content:center;background:var(--card);position:relative;}
+.photo-frame::before{content:'❄';position:absolute;top:10px;left:10px;color:var(--ice);font-size:14px;}
+.photo-frame::after{content:'❄';position:absolute;bottom:10px;right:10px;color:var(--ice);font-size:14px;}
+.photo-frame span{color:var(--ink-soft);font-size:13px;letter-spacing:.1em;}
+.names{font-size:30px;font-weight:800;margin:0;letter-spacing:.05em;}
+.names .amp{color:var(--rose);font-weight:400;margin:0 10px;}
+.hero .date{font-size:15px;color:var(--ink-soft);letter-spacing:.06em;margin:0;}
+.hero .venue{font-size:13px;color:var(--ice-deep);letter-spacing:.1em;margin:0;}
+.scroll-cue{position:absolute;bottom:28px;font-size:11px;color:var(--ink-soft);letter-spacing:.3em;}
+
+/* greeting */
+.orn{color:var(--ice);font-size:20px;margin-bottom:20px;}
+.msg{font-size:15px;color:var(--ink-soft);white-space:pre-line;margin:0 0 30px;}
+.parents{font-size:14px;color:var(--ink);display:flex;flex-direction:column;gap:8px;}
+
+/* gallery */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.grid .ph{aspect-ratio:3/4;background:var(--card);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ice);font-size:20px;}
+
+/* calendar */
+.dday{font-size:14px;color:var(--rose);letter-spacing:.05em;margin-bottom:28px;}
+.dday b{font-size:22px;font-family:'Nanum Myeongjo',serif;margin:0 3px;}
+table.cal{width:100%;border-collapse:collapse;font-size:13px;color:var(--ink-soft);}
+table.cal th{padding:8px 0;font-weight:500;color:var(--ice-deep);}
+table.cal td{padding:10px 0;}
+table.cal td.wed{color:var(--card);}
+table.cal td.active{position:relative;color:#fff;font-weight:700;}
+table.cal td.active::before{content:'';position:absolute;inset:2px 6px;background:var(--ice-deep);border-radius:50%;z-index:-1;}
+table.cal td.active{display:inline-block;width:26px;height:26px;line-height:26px;border-radius:50%;background:var(--ice-deep);color:#fff;}
+
+/* location */
+.venue-name{font-size:18px;font-weight:700;margin:0 0 4px;}
+.addr{font-size:13px;color:var(--ink-soft);margin:0 0 16px;}
+.copy-btn{border:1px solid var(--ice);background:none;color:var(--ice-deep);font-size:12px;padding:6px 14px;border-radius:20px;cursor:pointer;margin-bottom:30px;}
+.map-ph{height:160px;background:var(--card);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:13px;margin-bottom:26px;}
+.trans{text-align:left;font-size:13px;color:var(--ink-soft);display:flex;flex-direction:column;gap:14px;}
+.trans b{color:var(--ink);display:block;margin-bottom:3px;font-weight:500;}
+
+/* account */
+.acc{border:1px solid var(--line);border-radius:4px;margin-bottom:10px;overflow:hidden;text-align:left;}
+.acc-head{padding:14px 18px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:14px;font-weight:500;}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+.acc-row{padding:12px 18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:13px;}
+.acc-row .who{color:var(--ink-soft);display:block;font-size:11px;margin-bottom:2px;}
+.acc-row button{border:none;background:var(--ice-deep);color:#fff;font-size:11px;padding:6px 12px;border-radius:14px;}
+
+footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);letter-spacing:.1em;}
+</style>
+</head>
+<body>
+<div id="snow"></div>
+<div class="wrap">
+
+  <section class="hero">
+    <div class="photo-frame"><span>❄ 사진 준비 중 ❄</span></div>
+    <h1 class="names">신랑<span class="amp">&amp;</span>신부</h1>
+    <p class="date">2026. 12. 19 SAT PM 1:00</p>
+    <p class="venue">예식장 이름 · 홀 이름</p>
+    <div class="scroll-cue">S C R O L L</div>
+  </section>
+
+  <section class="greeting">
+    <div class="orn">❋</div>
+    <p class="msg">첫눈이 내리던 겨울날, 우리는
+서로에게 스며들었습니다.
+
+이제 함께 걸어갈 계절 앞에서
+가장 소중한 분들을 초대합니다.</p>
+    <div class="parents">
+      <span>OOO · OOO의 장남 <b>신랑 이름</b></span>
+      <span>OOO · OOO의 장녀 <b>신부 이름</b></span>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <h2>GALLERY</h2>
+    <div class="grid">
+      <div class="ph">❄</div><div class="ph">❄</div>
+      <div class="ph">❄</div><div class="ph">❄</div>
+      <div class="ph">❄</div><div class="ph">❄</div>
+    </div>
+  </section>
+
+  <section class="calendar">
+    <h2>WEDDING DAY</h2>
+    <div class="dday" id="dday">계산 중...</div>
+    <table class="cal">
+      <thead><tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr></thead>
+      <tbody>
+        <tr><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+        <tr><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+        <tr><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td><span class="active">19</span></td></tr>
+        <tr><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td></tr>
+        <tr><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td></td><td></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="location">
+    <h2>LOCATION</h2>
+    <p class="venue-name">예식장 이름</p>
+    <p class="addr" id="addrText">서울특별시 OO구 OO로 00 (지번 주소 입력)</p>
+    <button class="copy-btn" onclick="copyAddr()">주소 복사</button>
+    <div class="map-ph">지도는 이미지로 첨부하시거나<br>네이버지도 링크를 연결해드릴게요</div>
+    <div class="trans">
+      <div><b>지하철</b>OO역 O번 출구 도보 5분</div>
+      <div><b>버스</b>OOO, OOO번 · OO정류장 하차</div>
+      <div><b>자가용</b>내비게이션 'OO웨딩홀' 검색</div>
+    </div>
+  </section>
+
+  <section class="account">
+    <h2>마음 전하실 곳</h2>
+    <div class="acc" id="accGroom">
+      <div class="acc-head" onclick="toggleAcc('accGroom')"><span>신랑측 계좌번호</span><span>＋</span></div>
+      <div class="acc-body">
+        <div class="acc-row"><div><span class="who">신랑</span>OO은행 000-0000-0000</div><button onclick="copyText('OO은행 000-0000-0000')">복사</button></div>
+        <div class="acc-row"><div><span class="who">신랑 아버지</span>OO은행 000-0000-0000</div><button onclick="copyText('OO은행 000-0000-0000')">복사</button></div>
+      </div>
+    </div>
+    <div class="acc" id="accBride">
+      <div class="acc-head" onclick="toggleAcc('accBride')"><span>신부측 계좌번호</span><span>＋</span></div>
+      <div class="acc-body">
+        <div class="acc-row"><div><span class="who">신부</span>OO은행 000-0000-0000</div><button onclick="copyText('OO은행 000-0000-0000')">복사</button></div>
+        <div class="acc-row"><div><span class="who">신부 어머니</span>OO은행 000-0000-0000</div><button onclick="copyText('OO은행 000-0000-0000')">복사</button></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>❄ 신랑 &amp; 신부의 결혼식에 함께해주셔서 감사합니다 ❄</footer>
+</div>
+
+<script>
+// snow
+const snowBox=document.getElementById('snow');
+for(let i=0;i<22;i++){
+  const f=document.createElement('div');
+  f.className='flake';
+  f.textContent='❄';
+  f.style.left=Math.random()*100+'%';
+  f.style.setProperty('--dx',(Math.random()*60-30)+'px');
+  f.style.fontSize=(10+Math.random()*10)+'px';
+  f.style.animationDuration=(8+Math.random()*10)+'s';
+  f.style.animationDelay=(Math.random()*10)+'s';
+  f.style.opacity=0.4+Math.random()*0.5;
+  snowBox.appendChild(f);
+}
+
+// d-day
+function updateDday(){
+  const target=new Date('2026-12-19T13:00:00');
+  const now=new Date();
+  const diff=target-now;
+  const el=document.getElementById('dday');
+  if(diff<=0){ el.innerHTML='두 사람의 결혼식이 <b>지났습니다</b> 💍'; return; }
+  const d=Math.floor(diff/86400000);
+  el.innerHTML=`결혼식까지 <b>${d}</b>일 남았습니다`;
+}
+updateDday(); setInterval(updateDday,3600000);
+
+// accordion
+function toggleAcc(id){
+  const el=document.getElementById(id).querySelector('.acc-body');
+  el.style.maxHeight = el.style.maxHeight ? '' : el.scrollHeight+'px';
+}
+
+// copy
+function copyText(t){
+  try{ navigator.clipboard.writeText(t); alert('복사되었습니다: '+t); }catch(e){ alert(t); }
+}
+function copyAddr(){ copyText(document.getElementById('addrText').textContent); }
+</script>
+</body>
+</html>
