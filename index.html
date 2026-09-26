@@ -6,9 +6,10 @@
 <title>가희♥형민 결혼해요!</title>
 <!-- 프리텐다드 웹 폰트 적용 -->
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<!-- EB Garamond (클래식한 세리프/가라몬드 느낌 무료 폰트) & 나눔명조 적용 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#bfc7d0; --ink:#243240; --ink-soft:#5b6b78;
@@ -24,7 +25,7 @@
 *{box-sizing:border-box;}
 html{scroll-padding-top:env(safe-area-inset-top,0px);}
 
-/* 폰트 세팅에 글리프 코드(ss01, ss02, ss08) 적용 완료 */
+/* 기본 폰트는 프리텐다드 적용 */
 body{
   margin:0;
   background:var(--bg);
@@ -36,7 +37,9 @@ body{
   overflow-x:hidden;
 }
 
-h1,h2,.serif{font-family:'Nanum Myeongjo',serif;}
+/* 영문 타이틀에 가라몬드 감성의 EB Garamond 적용 */
+h2, .serif-en{font-family:'EB Garamond', serif; letter-spacing:.2em;}
+h1,.serif{font-family:'Nanum Myeongjo',serif;}
 
 /* 모청 카드 외부광선 효과 적용 (#5e676e, 투명도/범위 50%) */
 .wrap{
@@ -48,7 +51,7 @@ h1,h2,.serif{font-family:'Nanum Myeongjo',serif;}
 }
 
 section{padding:64px 28px;text-align:center;border-bottom:1px solid var(--line);}
-h2{font-size:15px;letter-spacing:.4em;color:var(--ice-deep);font-weight:700;margin:0 0 34px;}
+h2{font-size:18px;color:var(--ice-deep);font-weight:600;margin:0 0 34px;}
 
 /* snow - 동글동글한 원형 블러 눈송이 효과 */
 #snow{position:fixed;inset:0;pointer-events:none;z-index:5;overflow:hidden;}
@@ -75,10 +78,10 @@ h2{font-size:15px;letter-spacing:.4em;color:var(--ice-deep);font-weight:700;marg
 .photo-frame img{width:100%;height:100%;object-fit:cover;}
 .scroll-cue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-size:11px;color:#ffffff;letter-spacing:.3em;text-shadow:0 1px 3px rgba(0,0,0,0.5);z-index:2;}
 
-/* greeting - 이름, 날짜, 장소 및 초대 문구 영역 */
+/* greeting - 이름, 날짜, 장소 및 초대 문구 영역 (이름은 프리텐다드 유지) */
 .greeting{background:var(--card);}
 .hero-info{margin-bottom:30px;}
-.names{font-size:30px;font-weight:800;margin:0 0 14px;letter-spacing:.05em;}
+.names{font-size:30px;font-weight:700;margin:0 0 14px;letter-spacing:.05em;font-family:'Pretendard', sans-serif;}
 .names .amp{color:var(--rose);font-weight:400;margin:0 8px;}
 .hero-date{font-size:15px;color:var(--ink);letter-spacing:.06em;margin:0 0 6px;font-weight:500;}
 .hero-venue{font-size:13px;color:var(--ice-deep);letter-spacing:.1em;margin:0;}
@@ -104,6 +107,9 @@ table.cal td.active{display:inline-block;width:26px;height:26px;line-height:26px
 /* location */
 .venue-name{font-size:18px;font-weight:700;margin:0 0 4px;}
 .addr{font-size:13px;color:var(--ink-soft);margin:0 0 16px;}
+.map-card{display:block;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:24px;text-decoration:none;color:var(--ink);margin-bottom:20px;box-shadow:0 4px 12px rgba(0,0,0,0.05);transition:transform .2s;}
+.map-card:active{transform:scale(0.98);}
+.map-card-text{font-size:14px;font-weight:500;color:var(--ice-deep);display:flex;align-items:center;justify-content:center;gap:6px;}
 .map-btn-wrap{display:flex;gap:8px;justify-content:center;margin-bottom:26px;}
 .copy-btn, .map-link-btn{border:1px solid var(--ice-deep);background:var(--card);color:var(--ink);font-size:12px;padding:8px 16px;border-radius:20px;cursor:pointer;text-decoration:none;display:inline-block;}
 .map-link-btn{background:var(--ice-deep);color:#fff;}
@@ -156,7 +162,7 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
   </section>
 
   <section class="gallery">
-    <h2>GALLERY</h2>
+    <h2 class="serif-en">GALLERY</h2>
     <div class="grid">
       <div class="ph">❄</div><div class="ph">❄</div>
       <div class="ph">❄</div><div class="ph">❄</div>
@@ -165,7 +171,7 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
   </section>
 
   <section class="calendar">
-    <h2>WEDDING DAY</h2>
+    <h2 class="serif-en">WEDDING DAY</h2>
     <div class="dday" id="dday">계산 중...</div>
     <table class="cal">
       <thead><tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr></thead>
@@ -181,12 +187,18 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
   </section>
 
   <section class="location">
-    <h2>LOCATION</h2>
+    <h2 class="serif-en">LOCATION</h2>
     <p class="venue-name">L65호텔웨딩컨벤션</p>
     <p class="addr" id="addrText">서울 동대문구 왕산로 214 롯데캐슬 SKY-L65 6층</p>
+    
+    <!-- 네이버 지도 바로가기 카드 영역 -->
+    <a class="map-card" href="https://map.naver.com/p/search/L65%ED%98%B8%ED%85%94%EC%9B%A8%EB%94%A9/place/13171608" target="_blank">
+      <div class="map-card-text">📍 네이버 지도에서 위치 보기 &gt;</div>
+    </a>
+
     <div class="map-btn-wrap">
       <button class="copy-btn" onclick="copyAddr()">주소 복사</button>
-      <a class="map-link-btn" href="https://map.naver.com/p/search/L65%ED%98%B8%ED%85%94%EC%9B%A8%EB%94%A9/place/13171608?placePath=%2Fhome%3Fbk_query%3DL65%ED%98%B8%ED%85%94%EC%9B%A8%EB%94%A9%26entry%3Dpll%26from%3Dnx%26fromNxList%3Dtrue%26from%3Dmap%26fromPanelNum%3D2%26timestamp%3D202609261451%26locale%3Dko%26svcName%3Dmap_pcv5%26searchText%3DL65%ED%98%B8%ED%85%94%EC%9B%A8%EB%94%A9&placeSearchOption=bk_query%3DL65%25ED%2598%25B8%25ED%2585%2594%25EC%259B%25A8%25EB%2594%25A9%26entry%3Dpll%26fromNxList%3Dtrue%26originalQuery%3DL65%25ED%2598%25B8%25ED%2585%2594%25EC%259B%25A8%25EB%2594%25A9%26x%3D127.077416%26y%3D37.602053&searchType=place&c=15.00,0,0,0,dh" target="_blank">네이버 지도 보기</a>
+      <a class="map-link-btn" href="https://map.naver.com/p/search/L65%ED%98%B8%ED%85%94%EC%9B%A8%EB%94%A9/place/13171608" target="_blank">길찾기 앱 연동</a>
     </div>
     <div class="trans">
       <div><b>지하철</b>1호선/경의중앙선/수인분당선 청량리역 연결</div>
