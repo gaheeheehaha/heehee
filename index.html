@@ -4,30 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>신랑 ♥ 신부 결혼합니다</title>
+<!-- 프리텐다드 웹 폰트 적용 -->
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f4f8fa; --ink:#243240; --ink-soft:#5b6b78;
+  --bg:#ffffff; --ink:#243240; --ink-soft:#5b6b78;
   --ice:#8db3c6; --ice-deep:#3f5c6e; --rose:#b5717a;
-  --line:#dde5ea; --card:#ffffff;
+  --line:#bcd0dc; --card:#cad1d8;
   padding-top:env(safe-area-inset-top,0px);
   padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){ --bg:#0f1620; --ink:#eef2f5; --ink-soft:#a7b4bd; --card:#182330; --line:#2a3846; }
+  :root:not([data-theme="light"]){ --bg:#ffffff; --ink:#243240; --ink-soft:#5b6b78; --card:#cad1d8; --line:#bcd0dc; }
 }
-:root[data-theme="dark"]{ --bg:#0f1620; --ink:#eef2f5; --ink-soft:#a7b4bd; --card:#182330; --line:#2a3846; }
+:root[data-theme="dark"]{ --bg:#ffffff; --ink:#243240; --ink-soft:#5b6b78; --card:#cad1d8; --line:#bcd0dc; }
 *{box-sizing:border-box;}
 html{scroll-padding-top:env(safe-area-inset-top,0px);}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans KR',sans-serif;font-weight:300;line-height:1.8;overflow-x:hidden;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;font-weight:300;line-height:1.8;overflow-x:hidden;}
 h1,h2,.serif{font-family:'Nanum Myeongjo',serif;}
-.wrap{max-width:480px;margin:0 auto;position:relative;background:var(--bg);}
+.wrap{max-width:480px;margin:0 auto;position:relative;background:var(--card);}
 section{padding:64px 28px;text-align:center;border-bottom:1px solid var(--line);}
 h2{font-size:15px;letter-spacing:.4em;color:var(--ice-deep);font-weight:700;margin:0 0 34px;}
 
-/* snow - 블러 처리된 동글동글한 감성 눈송이 효과 */
+/* snow - 동글동글한 원형 블러 눈송이 효과 */
 #snow{position:fixed;inset:0;pointer-events:none;z-index:5;overflow:hidden;}
 .flake{
   position:absolute;
@@ -36,9 +38,6 @@ h2{font-size:15px;letter-spacing:.4em;color:var(--ice-deep);font-weight:700;marg
   border-radius:50%;
   box-shadow: 0 0 6px rgba(255,255,255,0.8);
   animation:fall linear infinite, sway ease-in-out infinite;
-}
-@media (prefers-color-scheme: dark){ 
-  .flake{background:#ffffffaa; box-shadow: 0 0 8px rgba(255,255,255,0.4);} 
 }
 @keyframes fall{
   0%{transform:translateY(-15px);}
@@ -50,34 +49,33 @@ h2{font-size:15px;letter-spacing:.4em;color:var(--ice-deep);font-weight:700;marg
 }
 
 /* hero */
-.hero{position:relative;padding:0;height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;background:linear-gradient(180deg,#e9f1f5,var(--bg));}
-@media (prefers-color-scheme: dark){ .hero{background:linear-gradient(180deg,#111b26,var(--bg));} }
-.photo-frame{width:230px;height:290px;border:1px solid var(--ice);border-radius:2px;display:flex;align-items:center;justify-content:center;background:var(--card);position:relative;}
-.photo-frame::before{content:'❄';position:absolute;top:10px;left:10px;color:var(--ice);font-size:14px;}
-.photo-frame::after{content:'❄';position:absolute;bottom:10px;right:10px;color:var(--ice);font-size:14px;}
-.photo-frame span{color:var(--ink-soft);font-size:13px;letter-spacing:.1em;}
-.names{font-size:30px;font-weight:800;margin:0;letter-spacing:.05em;}
-.names .amp{color:var(--rose);font-weight:400;margin:0 10px;}
-.hero .date{font-size:15px;color:var(--ink-soft);letter-spacing:.06em;margin:0;}
+.hero{position:relative;padding:40px 28px 28px;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:linear-gradient(180deg,#b8c7d4,var(--card));}
+
+/* 메인 사진 스타일 (1080x1920 비율 최적화) */
+.photo-frame{width:240px;height:320px;border-radius:4px;overflow:hidden;box-shadow:0 10px 25px rgba(35,50,64,0.15);background:var(--card);position:relative;}
+.photo-frame img{width:100%;height:100%;object-fit:cover;}
+
+.names{font-size:28px;font-weight:800;margin:0;letter-spacing:.05em;}
+.names .amp{color:var(--rose);font-weight:400;margin:0 8px;}
+.hero .date{font-size:14px;color:var(--ink-soft);letter-spacing:.06em;margin:0;}
 .hero .venue{font-size:13px;color:var(--ice-deep);letter-spacing:.1em;margin:0;}
-.scroll-cue{position:absolute;bottom:28px;font-size:11px;color:var(--ink-soft);letter-spacing:.3em;}
+.scroll-cue{position:absolute;bottom:16px;font-size:11px;color:var(--ink-soft);letter-spacing:.3em;}
 
 /* greeting */
-.orn{color:var(--ice);font-size:20px;margin-bottom:20px;}
-.msg{font-size:15px;color:var(--ink-soft);white-space:pre-line;margin:0 0 30px;}
+.orn{color:var(--ice-deep);font-size:20px;margin-bottom:20px;}
+.msg{font-size:15px;color:var(--ink);white-space:pre-line;margin:0 0 30px;}
 .parents{font-size:14px;color:var(--ink);display:flex;flex-direction:column;gap:8px;}
 
 /* gallery */
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.grid .ph{aspect-ratio:3/4;background:var(--card);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ice);font-size:20px;}
+.grid .ph{aspect-ratio:3/4;background:var(--bg);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ice-deep);font-size:20px;}
 
 /* calendar */
 .dday{font-size:14px;color:var(--rose);letter-spacing:.05em;margin-bottom:28px;}
 .dday b{font-size:22px;font-family:'Nanum Myeongjo',serif;margin:0 3px;}
-table.cal{width:100%;border-collapse:collapse;font-size:13px;color:var(--ink-soft);}
+table.cal{width:100%;border-collapse:collapse;font-size:13px;color:var(--ink);}
 table.cal th{padding:8px 0;font-weight:500;color:var(--ice-deep);}
 table.cal td{padding:10px 0;}
-table.cal td.wed{color:var(--card);}
 table.cal td.active{position:relative;color:#fff;font-weight:700;}
 table.cal td.active::before{content:'';position:absolute;inset:2px 6px;background:var(--ice-deep);border-radius:50%;z-index:-1;}
 table.cal td.active{display:inline-block;width:26px;height:26px;line-height:26px;border-radius:50%;background:var(--ice-deep);color:#fff;}
@@ -85,13 +83,13 @@ table.cal td.active{display:inline-block;width:26px;height:26px;line-height:26px
 /* location */
 .venue-name{font-size:18px;font-weight:700;margin:0 0 4px;}
 .addr{font-size:13px;color:var(--ink-soft);margin:0 0 16px;}
-.copy-btn{border:1px solid var(--ice);background:none;color:var(--ice-deep);font-size:12px;padding:6px 14px;border-radius:20px;cursor:pointer;margin-bottom:30px;}
-.map-ph{height:160px;background:var(--card);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:13px;margin-bottom:26px;}
-.trans{text-align:left;font-size:13px;color:var(--ink-soft);display:flex;flex-direction:column;gap:14px;}
+.copy-btn{border:1px solid var(--ice-deep);background:var(--card);color:var(--ink);font-size:12px;padding:6px 14px;border-radius:20px;cursor:pointer;margin-bottom:30px;}
+.map-ph{height:160px;background:var(--bg);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:13px;margin-bottom:26px;}
+.trans{text-align:left;font-size:13px;color:var(--ink);display:flex;flex-direction:column;gap:14px;}
 .trans b{color:var(--ink);display:block;margin-bottom:3px;font-weight:500;}
 
 /* account */
-.acc{border:1px solid var(--line);border-radius:4px;margin-bottom:10px;overflow:hidden;text-align:left;}
+.acc{border:1px solid var(--line);background:var(--bg);border-radius:4px;margin-bottom:10px;overflow:hidden;text-align:left;}
 .acc-head{padding:14px 18px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:14px;font-weight:500;}
 .acc-body{max-height:0;overflow:hidden;transition:max-height .3s ease;}
 .acc-row{padding:12px 18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:13px;}
@@ -106,7 +104,8 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
 <div class="wrap">
 
   <section class="hero">
-    <div class="photo-frame"><span>❄ 사진 준비 중 ❄</span></div>
+    <!-- 메인 사진 영역 (main.jpg 연동) -->
+    <div class="photo-frame"><img src="main.jpg" alt="메인 웨딩 사진"></div>
     <h1 class="names">신랑<span class="amp">&amp;</span>신부</h1>
     <p class="date">2026. 12. 19 SAT PM 1:00</p>
     <p class="venue">예식장 이름 · 홀 이름</p>
@@ -190,7 +189,7 @@ const snowBox=document.getElementById('snow');
 for(let i=0; i<40; i++){
   const f=document.createElement('div');
   f.className='flake';
-  const size = (3 + Math.random() * 5) + 'px'; // 크기를 작고 동글하게 (3px~8px)
+  const size = (3 + Math.random() * 5) + 'px';
   f.style.width = size;
   f.style.height = size;
   f.style.left = Math.random() * 100 + '%';
