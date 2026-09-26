@@ -88,13 +88,13 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 34px;}
 
 .orn{color:var(--point);font-size:20px;margin-bottom:20px;}
 
-/* 편지 봉투 컨테이너 (비율 고정) */
+/* 편지 봉투 컨테이너 */
 .letter-box{
   position:relative;
   width:100%;
-  max-width:360px;
+  max-width:380px;
   margin:0 auto;
-  aspect-ratio: 1 / 1.15;
+  aspect-ratio: 4 / 3.4;
 }
 
 /* 뒷봉투 (외부광선 20%) */
@@ -108,31 +108,32 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 34px;}
   filter: drop-shadow(0 0 15px rgba(94, 103, 110, 0.2));
 }
 
-/* 편지지 (안쪽에서 위로 스르륵 올라오는 애니메이션) */
+/* 편지지 (letter_paper.png 적용 및 애니메이션) */
 .letter-paper{
   position:absolute;
   left:50%;
-  bottom:35%;
-  transform:translateX(-50%) translateY(120px); /* 평소에는 봉투 아래로 푹 숨겨짐 */
-  width:78%;
-  height:82%;
+  bottom:15%;
+  transform:translateX(-50%) translateY(50px);
+  width:82%;
+  height:78%;
   background-image: url('letter_paper.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   border-radius: 4px;
-  padding: 36px 20px;
+  padding: 32px 18px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.08);
   z-index:2;
-  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
+  overflow: hidden;
 }
 
-/* 스크롤 시 종이가 위로 쑥 올라와서 전문이 다 보임 */
+/* 스크롤 시 종이가 위로 쑥 올라옴 */
 .letter-box.active .letter-paper{
-  transform:translateX(-50%) translateY(-25px);
+  transform:translateX(-50%) translateY(-28px);
 }
 
 /* 앞봉투 (가장 위 레이어) */
@@ -146,7 +147,7 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 34px;}
   pointer-events:none;
 }
 
-/* 편지지 내부 텍스트 스타일 (전문이 넉넉히 보이도록 조정) */
+/* 편지지 내부 텍스트 스타일 */
 .msg{font-size:12.5px;color:var(--ink);white-space:pre-line;margin:0;line-height:1.75;}
 .parents{font-size:11.5px;color:var(--ink);display:flex;flex-direction:column;gap:3px;border-top:1px solid #e2e8f0;padding-top:10px;margin-top:auto;}
 
@@ -240,6 +241,7 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
   <section class="calendar">
     <h2 class="serif-en">WEDDING DAY</h2>
     <div class="dday" id="dday">계산 중...</div>
+    <!-- 2027년 1월 달력 (1월 17일 일요일 예식) -->
     <table class="cal">
       <thead><tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr></thead>
       <tbody>
@@ -334,7 +336,7 @@ function updateDday(){
 updateDday(); setInterval(updateDday,3600000);
 
 // accordion
->function toggleAcc(id){
+function toggleAcc(id){
   const el=document.getElementById(id).querySelector('.acc-body');
   el.style.maxHeight = el.style.maxHeight ? '' : el.scrollHeight+'px';
 }
