@@ -22,7 +22,6 @@ body{
   margin:0;background:var(--bg);color:var(--ink);
   font-family:'Pretendard',-apple-system,sans-serif;
   font-weight:300;line-height:1.8;overflow-x:hidden;
-  /* 프리텐다드 글리프(숫자 및 형태 변형) 기능 적용 */
   font-feature-settings: "ss01", "ss02", "ss08";
 }
 h2,.serif-en{font-family:'EB Garamond',serif;letter-spacing:.2em;}
@@ -66,14 +65,14 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 10px;}
 .letter-box.active .letter-paper-wrap{ transform:translate(-50%, -8%); }
 .letter-paper-img{width:100%;display:block;}
 
-/* 소개 전문 상단 여백을 넓게 주어 너무 딱 붙지 않도록 수정 */
+/* 소개 글 영역 패딩 60px 및 글씨 크기 13px 적용 */
 .letter-text{
   position:absolute; inset:0; 
-  padding:42px 12% 16%; 
+  padding:60px 12% 16%; 
   display:flex; flex-direction:column; justify-content:flex-start; align-items:center; text-align:center;
 }
-.msg{font-size:11px;color:var(--ink);white-space:pre-line;margin:0 0 16px 0;line-height:1.65;}
-.parents{font-size:10.5px;color:var(--ink);display:flex;flex-direction:column;gap:3px;border-top:1px solid #cbd5e1;padding-top:10px;width:100%;}
+.msg{font-size:13px;color:var(--ink);white-space:pre-line;margin:0 0 16px 0;line-height:1.7;}
+.parents{font-size:11.5px;color:var(--ink);display:flex;flex-direction:column;gap:4px;border-top:1px solid #cbd5e1;padding-top:10px;width:100%;}
 .letter-front{position:absolute;left:0;bottom:0;width:100%;z-index:3;pointer-events:none;display:block;}
 
 /* calendar */
@@ -88,11 +87,11 @@ table.cal td{padding:6px 0;vertical-align:middle;}
 table.cal td.active{font-weight:700;}
 table.cal td.active span{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;background:var(--point);border-radius:50%;color:#fff;}
 
-/* ===== 갤러리 (3x3 그리드, img_1 ~ img_9 적용) ===== */
+/* ===== 갤러리 (원본 비율 그대로 3x3 정렬) ===== */
 .grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:6px;}
-.grid .ph{aspect-ratio:1/1;background:var(--bg);border:1px solid var(--line);cursor:pointer;overflow:hidden;border-radius:4px;transition:opacity .2s;}
+.grid .ph{background:var(--bg);border:1px solid var(--line);cursor:pointer;overflow:hidden;border-radius:4px;transition:opacity .2s;}
 .grid .ph:active{opacity:0.8;}
-.grid .ph img{width:100%;height:100%;object-fit:cover;display:block;}
+.grid .ph img{width:100%;height:auto;display:block;}
 
 /* ===== 갤러리 팝업(라이트박스) 스타일 ===== */
 #lightbox{
@@ -154,7 +153,7 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
 
 <!-- 갤러리 팝업(라이트박스) 구조 -->
 <div id="lightbox">
-  <div class="lightbox-content">
+  <div class="lightbox-content" id="lightboxContent">
     <button class="lb-close" onclick="closeLightbox()">&times;</button>
     <button class="lb-btn lb-prev" onclick="changeSlide(-1)">&#10094;</button>
     <img id="lightboxImg" src="" alt="확대 이미지">
@@ -221,7 +220,7 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
     </table>
   </section>
 
-  <!-- GALLERY 영역 (3x3 그리드, img_1 ~ img_9 적용) -->
+  <!-- GALLERY 영역 (3x3 그리드, 원본 비율 유지, img_1 ~ img_9 적용) -->
   <section class="gallery">
     <h2 class="serif-en">GALLERY</h2>
     <div class="grid">
@@ -317,18 +316,21 @@ function updateDday(){
 }
 updateDday(); setInterval(updateDday,3600000);
 
-// 갤러리 팝업(라이트박스) 스크립트
+// 갤러리 팝업(라이트박스) 및 스와이프(터치) 스크립트
 const images = ['img_1.png', 'img_2.png', 'img_3.png', 'img_4.png', 'img_5.png', 'img_6.png', 'img_7.png', 'img_8.png', 'img_9.png'];
 let currentIndex = 0;
+const lightbox = document.getElementById('lightbox');
 
 function openLightbox(index) {
   currentIndex = index;
   document.getElementById('lightboxImg').src = images[currentIndex];
-  document.getElementById('lightbox').classList.add('active');
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden'; // 배경 스크롤 방지
 }
 
 function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('active');
+  lightbox.classList.remove('active');
+  document.body.style.overflow = ''; // 배경 스크롤 복구
 }
 
 function changeSlide(direction) {
@@ -346,6 +348,33 @@ document.getElementById('lightbox').addEventListener('click', function(e) {
     closeLightbox();
   }
 });
+
+// 모바일 터치 스와이프 구현
+let touchStartX = 0;
+let touchEndX = 0;
+const contentBox = document.getElementById('lightboxContent');
+
+contentBox.addEventListener('touchstart', function(e) {
+  touchStartX = e.changedTouches[0].screenX;
+}, {passive: true});
+
+contentBox.addEventListener('touchend', function(e) {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+}, {passive: true});
+
+function handleSwipe() {
+  const threshold = 50;
+  if (touchEndX < touchStartX - threshold) {
+    changeSlide(1);
+  }
+  if (touchEndX > touchStartX - threshold) {
+    // 굳이 반대방향 수정
+  }
+  if (touchEndX > touchStartX + threshold) {
+    changeSlide(-1);
+  }
+}
 
 // accordion
 function toggleAcc(id){
