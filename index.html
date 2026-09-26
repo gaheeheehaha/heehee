@@ -6,14 +6,14 @@
 <title>가희♥형민 결혼해요!</title>
 <!-- 프리텐다드 웹 폰트 적용 -->
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-<!-- EB Garamond (클래식한 세리프/가라몬드 느낌 무료 폰트) & 나눔명조 적용 -->
+<!-- EB Garamond (가라몬드 느낌 폰트) & 나눔명조 적용 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#bfc7d0; --ink:#243240; --ink-soft:#5b6b78;
-  --ice:#8db3c6; --ice-deep:#3f5c6e; --rose:#b5717a;
+  --ice:#8db3c6; --ice-deep:#3f5c6e; --point:#0e69a1;
   --line:#b0bac3; --card:#dfe3e8;
   padding-top:env(safe-area-inset-top,0px);
   padding-bottom:env(safe-area-inset-bottom,0px);
@@ -37,7 +37,7 @@ body{
   overflow-x:hidden;
 }
 
-/* 영문 타이틀에 가라몬드 감성의 EB Garamond 적용 */
+/* 영문 타이틀 및 스크롤 안내에 EB Garamond 적용 */
 h2, .serif-en{font-family:'EB Garamond', serif; letter-spacing:.2em;}
 h1,.serif{font-family:'Nanum Myeongjo',serif;}
 
@@ -51,7 +51,7 @@ h1,.serif{font-family:'Nanum Myeongjo',serif;}
 }
 
 section{padding:64px 28px;text-align:center;border-bottom:1px solid var(--line);}
-h2{font-size:18px;color:var(--ice-deep);font-weight:600;margin:0 0 34px;}
+h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 34px;}
 
 /* snow - 동글동글한 원형 블러 눈송이 효과 */
 #snow{position:fixed;inset:0;pointer-events:none;z-index:5;overflow:hidden;}
@@ -72,47 +72,47 @@ h2{font-size:18px;color:var(--ice-deep);font-weight:600;margin:0 0 34px;}
   50%{margin-left:20px;}
 }
 
-/* hero - 메인 사진만 꽉 차게 표시 */
+/* hero - 메인 사진만 꽉 차게 표시 (불필요한 텍스트 제거 및 스크롤 가라몬드 적용) */
 .hero{position:relative;padding:0;height:100svh;display:flex;align-items:center;justify-content:center;background:var(--card);}
 .photo-frame{width:100%;height:100%;position:relative;}
 .photo-frame img{width:100%;height:100%;object-fit:cover;}
-.scroll-cue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-size:11px;color:#ffffff;letter-spacing:.3em;text-shadow:0 1px 3px rgba(0,0,0,0.5);z-index:2;}
+.scroll-cue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-family:'EB Garamond', serif;font-size:13px;color:#ffffff;letter-spacing:.35em;text-shadow:0 1px 3px rgba(0,0,0,0.5);z-index:2;}
 
-/* greeting - 이름, 날짜, 장소 및 초대 문구 영역 (이름은 프리텐다드 유지) */
+/* greeting - 이름, 날짜, 장소 및 초대 문구 영역 */
 .greeting{background:var(--card);}
 .hero-info{margin-bottom:30px;}
 .names{font-size:30px;font-weight:700;margin:0 0 14px;letter-spacing:.05em;font-family:'Pretendard', sans-serif;}
-.names .amp{color:var(--rose);font-weight:400;margin:0 8px;}
+.names .amp{color:var(--point);font-weight:400;margin:0 8px;}
 .hero-date{font-size:15px;color:var(--ink);letter-spacing:.06em;margin:0 0 6px;font-weight:500;}
-.hero-venue{font-size:13px;color:var(--ice-deep);letter-spacing:.1em;margin:0;}
+.hero-venue{font-size:13px;color:var(--point);letter-spacing:.1em;margin:0;}
 
-.orn{color:var(--ice-deep);font-size:20px;margin-bottom:20px;}
+.orn{color:var(--point);font-size:20px;margin-bottom:20px;}
 .msg{font-size:15px;color:var(--ink);white-space:pre-line;margin:0 0 30px;}
 .parents{font-size:14px;color:var(--ink);display:flex;flex-direction:column;gap:8px;}
 
 /* gallery */
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.grid .ph{aspect-ratio:3/4;background:var(--bg);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ice-deep);font-size:20px;}
+.grid .ph{aspect-ratio:3/4;background:var(--bg);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--point);font-size:20px;}
 
 /* calendar */
-.dday{font-size:14px;color:var(--rose);letter-spacing:.05em;margin-bottom:28px;}
+.dday{font-size:14px;color:var(--point);letter-spacing:.05em;margin-bottom:28px;}
 .dday b{font-size:22px;font-family:'Nanum Myeongjo',serif;margin:0 3px;}
 table.cal{width:100%;border-collapse:collapse;font-size:13px;color:var(--ink);}
-table.cal th{padding:8px 0;font-weight:500;color:var(--ice-deep);}
+table.cal th{padding:8px 0;font-weight:500;color:var(--point);}
 table.cal td{padding:10px 0;}
 table.cal td.active{position:relative;color:#fff;font-weight:700;}
-table.cal td.active::before{content:'';position:absolute;inset:2px 6px;background:var(--ice-deep);border-radius:50%;z-index:-1;}
-table.cal td.active{display:inline-block;width:26px;height:26px;line-height:26px;border-radius:50%;background:var(--ice-deep);color:#fff;}
+table.cal td.active::before{content:'';position:absolute;inset:2px 6px;background:var(--point);border-radius:50%;z-index:-1;}
+table.cal td.active{display:inline-block;width:26px;height:26px;line-height:26px;border-radius:50%;background:var(--point);color:#fff;}
 
 /* location */
 .venue-name{font-size:18px;font-weight:700;margin:0 0 4px;}
 .addr{font-size:13px;color:var(--ink-soft);margin:0 0 16px;}
 .map-card{display:block;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:24px;text-decoration:none;color:var(--ink);margin-bottom:20px;box-shadow:0 4px 12px rgba(0,0,0,0.05);transition:transform .2s;}
 .map-card:active{transform:scale(0.98);}
-.map-card-text{font-size:14px;font-weight:500;color:var(--ice-deep);display:flex;align-items:center;justify-content:center;gap:6px;}
+.map-card-text{font-size:14px;font-weight:500;color:var(--point);display:flex;align-items:center;justify-content:center;gap:6px;}
 .map-btn-wrap{display:flex;gap:8px;justify-content:center;margin-bottom:26px;}
-.copy-btn, .map-link-btn{border:1px solid var(--ice-deep);background:var(--card);color:var(--ink);font-size:12px;padding:8px 16px;border-radius:20px;cursor:pointer;text-decoration:none;display:inline-block;}
-.map-link-btn{background:var(--ice-deep);color:#fff;}
+.copy-btn, .map-link-btn{border:1px solid var(--point);background:var(--card);color:var(--ink);font-size:12px;padding:8px 16px;border-radius:20px;cursor:pointer;text-decoration:none;display:inline-block;}
+.map-link-btn{background:var(--point);color:#fff;}
 .trans{text-align:left;font-size:13px;color:var(--ink);display:flex;flex-direction:column;gap:14px;}
 .trans b{color:var(--ink);display:block;margin-bottom:3px;font-weight:500;}
 
@@ -122,7 +122,7 @@ table.cal td.active{display:inline-block;width:26px;height:26px;line-height:26px
 .acc-body{max-height:0;overflow:hidden;transition:max-height .3s ease;}
 .acc-row{padding:12px 18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:13px;}
 .acc-row .who{color:var(--ink-soft);display:block;font-size:11px;margin-bottom:2px;}
-.acc-row button{border:none;background:var(--ice-deep);color:#fff;font-size:11px;padding:6px 12px;border-radius:14px;}
+.acc-row button{border:none;background:var(--point);color:#fff;font-size:11px;padding:6px 12px;border-radius:14px;}
 
 footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);letter-spacing:.1em;}
 </style>
@@ -132,15 +132,15 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
 <div class="wrap">
 
   <section class="hero">
-    <!-- 메인 사진이 화면에 꽉 차게 들어가는 영역 -->
+    <!-- 메인 사진만 꽉 차게 표시 -->
     <div class="photo-frame">
       <img src="main.jpg" alt="메인 웨딩 사진">
-      <div class="scroll-cue">S C R O L L</div>
+      <div class="scroll-cue">SCROLL</div>
     </div>
   </section>
 
   <section class="greeting">
-    <!-- 두 번째 영역으로 이동한 신랑신부 정보 및 초대 메시지 -->
+    <!-- 두 번째 영역: 신랑신부 정보 및 초대 메시지 -->
     <div class="hero-info">
       <h1 class="names">서형민<span class="amp">&amp;</span>김가희</h1>
       <p class="hero-date">2027. 1. 19 SAT AM 10:30</p>
@@ -173,15 +173,16 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
   <section class="calendar">
     <h2 class="serif-en">WEDDING DAY</h2>
     <div class="dday" id="dday">계산 중...</div>
+    <!-- 2027년 1월 달력 (1월 19일 화요일 예식) -->
     <table class="cal">
       <thead><tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr></thead>
       <tbody>
-        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td>1</td></tr>
-        <tr><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
-        <tr><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td></tr>
-        <tr><td>16</td><td>17</td><td>18</td><td><span class="active">19</span></td><td>20</td><td>21</td><td>22</td></tr>
-        <tr><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td></tr>
-        <tr><td>30</td><td>31</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td>1</td><td>2</td></tr>
+        <tr><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+        <tr><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>
+        <tr><td>17</td><td>18</td><td><span class="active">19</span></td><td>20</td><td>21</td><td>22</td><td>23</td></tr>
+        <tr><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td></tr>
+        <tr><td>31</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
       </tbody>
     </table>
   </section>
