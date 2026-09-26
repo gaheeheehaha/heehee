@@ -43,7 +43,7 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 10px;}
 .hero-venue{font-size:13px;color:var(--point);letter-spacing:.1em;margin:0;}
 .orn{color:var(--point);font-size:20px;margin-bottom:24px;}
 
-/* ===== 편지 봉투 영역 (외부광선 20% 및 원본 100% 비율 적용) ===== */
+/* ===== 편지 봉투 영역 ===== */
 .letter-box{position:relative;width:100%;max-width:380px;margin:0 auto;}
 .letter-back{
   width:100%;
@@ -60,9 +60,13 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 10px;}
 .letter-box.active .letter-paper-wrap{ transform:translate(-50%, 5%); }
 .letter-paper-img{width:100%;display:block;}
 
-.letter-text{position:absolute;inset:0;padding:15% 12% 10%;display:flex;flex-direction:column;justify-content:space-between;text-align:center;}
-.msg{font-size:11.5px;color:var(--ink);white-space:pre-line;margin:0;line-height:1.65;}
-.parents{font-size:11px;color:var(--ink);display:flex;flex-direction:column;gap:4px;border-top:1px solid #cbd5e1;padding-top:10px;margin-top:auto;}
+.letter-text{
+  position:absolute; inset:0; 
+  padding:14% 10% 12%; 
+  display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
+}
+.msg{font-size:11px;color:var(--ink);white-space:pre-line;margin:0 0 14px 0;line-height:1.6;}
+.parents{font-size:10.5px;color:var(--ink);display:flex;flex-direction:column;gap:3px;border-top:1px solid #cbd5e1;padding-top:10px;width:100%;}
 .letter-front{position:absolute;left:0;bottom:0;width:100%;z-index:3;pointer-events:none;display:block;}
 
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
@@ -70,6 +74,7 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 10px;}
 .grid .ph img{width:100%;height:100%;object-fit:cover;}
 
 /* calendar */
+.cal-subdate{font-size:18px;font-weight:700;color:var(--ink);margin-bottom:16px;letter-spacing:.05em;}
 .dday{font-size:14px;color:var(--ink-soft);letter-spacing:.05em;margin-bottom:28px;}
 .dday b{font-family:'Pretendard', sans-serif; font-size:16px; color:var(--point); font-weight:700; margin:0 2px;}
 
@@ -82,9 +87,7 @@ table.cal td.active span{display:inline-flex;align-items:center;justify-content:
 
 /* location */
 .venue-name{font-size:18px;font-weight:700;margin:0 0 4px;}
-.addr{font-size:13px;color:var(--ink-soft);margin:0 0 6px;}
-/* 로케이션 하단 예식일시 스타일 (L65호텔웨딩과 크기·볼드·검정색 동일하게 적용) */
-.venue-subdate{font-size:18px;font-weight:700;color:var(--ink);margin:0 0 16px;letter-spacing:.05em;}
+.addr{font-size:13px;color:var(--ink-soft);margin:0 0 16px;}
 
 .map-card{display:block;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:24px;text-decoration:none;color:var(--ink);margin-bottom:20px;box-shadow:0 4px 12px rgba(0,0,0,.05);}
 .map-card-text{font-size:14px;font-weight:500;color:var(--point);display:flex;align-items:center;justify-content:center;gap:6px;}
@@ -159,6 +162,7 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
 
   <section class="calendar">
     <h2 class="serif-en">WEDDING DAY</h2>
+    <p class="cal-subdate">2027. 1. 17 SUN AM 10:30</p>
     <div class="dday" id="dday">계산 중...</div>
     <table class="cal">
       <thead><tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr></thead>
@@ -177,7 +181,6 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
     <h2 class="serif-en">LOCATION</h2>
     <p class="venue-name">L65호텔웨딩컨벤션</p>
     <p class="addr" id="addrText">서울 동대문구 왕산로 214 롯데캐슬 SKY-L65 6층</p>
-    <p class="venue-subdate">2027. 1. 17 SUN AM 10:30</p>
     
     <a class="map-card" href="https://map.naver.com/p/search/L65%ED%98%B8%ED%85%94%EC%9B%A8%EB%94%A9/place/13171608" target="_blank">
       <div class="map-card-text">📍 네이버 지도에서 위치 보기 &gt;</div>
