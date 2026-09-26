@@ -43,15 +43,9 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 10px;}
 .hero-venue{font-size:13px;color:var(--point);letter-spacing:.1em;margin:0;}
 .orn{color:var(--point);font-size:20px;margin-bottom:24px;}
 
-/* ===== 편지 봉투 영역 (PNG 실루엣에 맞춘 20% 외부광선 filter 적용) ===== */
+/* ===== 편지 봉투 영역 ===== */
 .letter-box{position:relative;width:100%;max-width:380px;margin:0 auto;overflow:hidden;}
-.letter-back{
-  width:100%;
-  display:block;
-  position:relative;
-  z-index:1;
-  filter: drop-shadow(0 0 15px rgba(94, 103, 110, 0.2));
-}
+.letter-back{width:100%;display:block;position:relative;z-index:1;}
 
 .letter-paper-wrap{
   position:absolute; left:50%; top:10px; width:92%; z-index:2;
@@ -61,7 +55,6 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 10px;}
 .letter-box.active .letter-paper-wrap{ transform:translate(-50%, 12%); }
 .letter-paper-img{width:100%;display:block;}
 
-/* 소개 전문은 상단에서 30px, 부모님 성함은 그 바로 밑에 배치 */
 .letter-text{
   position:absolute; inset:0; 
   padding:30px 12% 16%; 
@@ -70,10 +63,6 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 10px;}
 .msg{font-size:11px;color:var(--ink);white-space:pre-line;margin:0 0 16px 0;line-height:1.65;}
 .parents{font-size:10.5px;color:var(--ink);display:flex;flex-direction:column;gap:3px;border-top:1px solid #cbd5e1;padding-top:10px;width:100%;}
 .letter-front{position:absolute;left:0;bottom:0;width:100%;z-index:3;pointer-events:none;display:block;}
-
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.grid .ph{aspect-ratio:3/4;background:var(--bg);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--point);font-size:20px;overflow:hidden;}
-.grid .ph img{width:100%;height:100%;object-fit:cover;}
 
 /* calendar */
 .cal-subdate{font-size:18px;font-weight:700;color:var(--ink);margin-bottom:16px;letter-spacing:.05em;}
@@ -86,6 +75,45 @@ table.cal th{padding:8px 0;font-weight:500;color:var(--point);}
 table.cal td{padding:6px 0;vertical-align:middle;}
 table.cal td.active{font-weight:700;}
 table.cal td.active span{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;background:var(--point);border-radius:50%;color:#fff;}
+
+/* ===== 갤러리 (3x3 그리드 적용) ===== */
+.grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:6px;}
+.grid .ph{aspect-ratio:1/1;background:var(--bg);border:1px solid var(--line);cursor:pointer;overflow:hidden;border-radius:4px;transition:opacity .2s;}
+.grid .ph:active{opacity:0.8;}
+.grid .ph img{width:100%;height:100%;object-fit:cover;display:block;}
+
+/* ===== 갤러리 팝업(라이트박스) 스타일 (투명도 적용) ===== */
+#lightbox{
+  position:fixed; inset:0; z-index:9999;
+  background:rgba(36, 50, 64, 0.75); /* 은은하게 청첩장이 비치도록 투명도 설정 */
+  backdrop-filter: blur(4px);
+  display:none; align-items:center; justify-content:center;
+  padding:20px;
+}
+#lightbox.active{display:flex;}
+.lightbox-content{position:relative;max-width:100%;max-height:85vh;display:flex;align-items:center;justify-content:center;}
+.lightbox-content img{max-width:100%;max-height:80vh;object-fit:contain;border-radius:6px;box-shadow:0 8px 24px rgba(0,0,0,0.3);}
+.lb-btn{
+  position:absolute; top:50%; transform:translateY(-50%);
+  background:rgba(255,255,255,0.2); color:#fff; border:none; font-size:24px;
+  width:44px; height:44px; border-radius:50%; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; transition:background .2s;
+  z-index:10;
+}
+.lb-btn:hover{background:rgba(255,255,255,0.4);}
+.lb-prev{left:-60px;}
+.lb-next{right:-60px;}
+.lb-close{
+  position:absolute; top:-50px; right:0;
+  background:transparent; color:#fff; border:none; font-size:32px; cursor:pointer;
+  width:40px; height:40px; display:flex; align-items:center; justify-content:center;
+}
+
+@media(max-width: 520px){
+  .lb-prev{left:10px;}
+  .lb-next{right:10px;}
+  .lb-btn{background:rgba(0,0,0,0.4);width:36px;height:36px;font-size:20px;}
+}
 
 /* location */
 .venue-name{font-size:18px;font-weight:700;margin:0 0 4px;}
@@ -111,6 +139,17 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
 </head>
 <body>
 <div id="snow"></div>
+
+<!-- 갤러리 팝업(라이트박스) 구조 -->
+<div id="lightbox">
+  <div class="lightbox-content">
+    <button class="lb-close" onclick="closeLightbox()">&times;</button>
+    <button class="lb-btn lb-prev" onclick="changeSlide(-1)">&#10094;</button>
+    <img id="lightboxImg" src="" alt="확대 이미지">
+    <button class="lb-btn lb-next" onclick="changeSlide(1)">&#10095;</button>
+  </div>
+</div>
+
 <div class="wrap">
 
   <section class="hero">
@@ -153,15 +192,6 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
     </div>
   </section>
 
-  <section class="gallery">
-    <h2 class="serif-en">GALLERY</h2>
-    <div class="grid">
-      <div class="ph">❄</div><div class="ph">❄</div>
-      <div class="ph">❄</div><div class="ph">❄</div>
-      <div class="ph">❄</div><div class="ph">❄</div>
-    </div>
-  </section>
-
   <section class="calendar">
     <h2 class="serif-en">WEDDING DAY</h2>
     <p class="cal-subdate">2027. 1. 17 SUN AM 10:30</p>
@@ -177,6 +207,22 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
         <tr><td>31</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
       </tbody>
     </table>
+  </section>
+
+  <!-- GALLERY 영역 (3x3 배율, img_01 ~ img_09 적용) -->
+  <section class="gallery">
+    <h2 class="serif-en">GALLERY</h2>
+    <div class="grid">
+      <div class="ph" onclick="openLightbox(0)"><img src="img_01.png" alt="갤러리 1"></div>
+      <div class="ph" onclick="openLightbox(1)"><img src="img_02.png" alt="갤러리 2"></div>
+      <div class="ph" onclick="openLightbox(2)"><img src="img_03.png" alt="갤러리 3"></div>
+      <div class="ph" onclick="openLightbox(3)"><img src="img_04.png" alt="갤러리 4"></div>
+      <div class="ph" onclick="openLightbox(4)"><img src="img_05.png" alt="갤러리 5"></div>
+      <div class="ph" onclick="openLightbox(5)"><img src="img_06.png" alt="갤러리 6"></div>
+      <div class="ph" onclick="openLightbox(6)"><img src="img_07.png" alt="갤러리 7"></div>
+      <div class="ph" onclick="openLightbox(7)"><img src="img_08.png" alt="갤러리 8"></div>
+      <div class="ph" onclick="openLightbox(8)"><img src="img_09.png" alt="갤러리 9"></div>
+    </div>
   </section>
 
   <section class="location">
@@ -221,6 +267,7 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
 </div>
 
 <script>
+// snow
 const snowBox=document.getElementById('snow');
 for(let i=0; i<40; i++){
   const f=document.createElement('div');
@@ -235,6 +282,7 @@ for(let i=0; i<40; i++){
   snowBox.appendChild(f);
 }
 
+// 편지지 올라오는 애니메이션 감지
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if(entry.isIntersecting){
@@ -245,6 +293,7 @@ const observer = new IntersectionObserver((entries) => {
 
 observer.observe(document.getElementById('letterBox'));
 
+// d-day
 function updateDday(){
   const target=new Date('2027-01-17T10:30:00');
   const now=new Date();
@@ -256,11 +305,44 @@ function updateDday(){
 }
 updateDday(); setInterval(updateDday,3600000);
 
+// 갤러리 팝업(라이트박스) 스크립트
+const images = ['img_01.png', 'img_02.png', 'img_03.png', 'img_04.png', 'img_05.png', 'img_06.png', 'img_07.png', 'img_08.png', 'img_09.png'];
+let currentIndex = 0;
+
+function openLightbox(index) {
+  currentIndex = index;
+  document.getElementById('lightboxImg').src = images[currentIndex];
+  document.getElementById('lightbox').classList.add('active');
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+}
+
+function changeSlide(direction) {
+  currentIndex += direction;
+  if (currentIndex < 0) {
+    currentIndex = images.length - 1;
+  } else if (currentIndex >= images.length) {
+    currentIndex = 0;
+  }
+  document.getElementById('lightboxImg').src = images[currentIndex];
+}
+
+// ESC 키나 배경 클릭 시 닫기
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeLightbox();
+  }
+});
+
+// accordion
 function toggleAcc(id){
   const el=document.getElementById(id).querySelector('.acc-body');
   el.style.maxHeight = el.style.maxHeight ? '' : el.scrollHeight+'px';
 }
 
+// copy
 function copyText(t){
   try{ navigator.clipboard.writeText(t); alert('복사되었습니다: '+t); }catch(e){ alert(t); }
 }
