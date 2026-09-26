@@ -48,7 +48,7 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 10px;}
 .scroll-cue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-family:'EB Garamond',serif;font-size:13px;color:#fff;letter-spacing:.35em;text-shadow:0 1px 3px rgba(0,0,0,.5);z-index:2;}
 
 .greeting{background:var(--card);padding:64px 20px 56px;}
-.hero-info{margin-bottom:45px;} /* 이름 영역과 아래 편지봉투 사이의 간격을 넓혀서 위쪽 글자를 가리지 않게 함 */
+.hero-info{margin-bottom:45px;}
 .names{font-size:30px;font-weight:700;margin:0 0 14px;letter-spacing:.05em;font-family:'Pretendard',sans-serif;}
 .names .amp{color:var(--point);font-weight:400;margin:0 8px;}
 .hero-date{font-size:15px;color:var(--ink);letter-spacing:.06em;margin:0 0 6px;font-weight:500;}
@@ -59,7 +59,7 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 10px;}
 .letter-box{
   position:relative; width:100%; max-width:380px; margin:0 auto; 
   overflow:visible; 
-  padding-top:110px; /* 종이가 위로 솟아올라도 위쪽 공간이 여유 있도록 확보 */
+  padding-top:100px; 
 }
 .letter-back{
   width:100%;
@@ -73,13 +73,13 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 10px;}
   transform:translate(-50%, 35%);
   transition:transform 1.2s cubic-bezier(.16,1,.3,1);
 }
-/* 요청하신 -14% 위치로 종이가 쏙 올라오면서 부모님 성함 아래 여백이 자연스럽게 넓어짐 */
-.letter-box.active .letter-paper-wrap{ transform:translate(-50%, -14%); }
+/* 눈꽃 장식과의 간격을 좁히기 위해 위로 더 올라오도록 조정 (-22%) */
+.letter-box.active .letter-paper-wrap{ transform:translate(-50%, -22%); }
 .letter-paper-img{width:100%;display:block;}
 
 .letter-text{
   position:absolute; inset:0; 
-  padding:50px 8% 28px; /* 종이 내부 하단 패딩을 늘려 부모님 성함 아래에 여백을 줌 */
+  padding:45px 8% 28px; 
   display:flex; flex-direction:column; justify-content:flex-start; align-items:center; text-align:center;
 }
 .msg{font-size:13px;color:var(--ink);white-space:pre-line;margin:0 0 14px 0;line-height:1.7;}
