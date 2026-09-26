@@ -43,17 +43,14 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 10px;}
 .hero-venue{font-size:13px;color:var(--point);letter-spacing:.1em;margin:0;}
 .orn{color:var(--point);font-size:20px;margin-bottom:24px;}
 
-/* ===== 편지 봉투 영역 (외부광선 깔끔하게 수정) ===== */
-.letter-box{position:relative;width:100%;max-width:380px;margin:0 auto;overflow:hidden;border-radius:8px;}
+/* ===== 편지 봉투 영역 (PNG 실루엣에 맞춘 20% 외부광선 filter 적용) ===== */
+.letter-box{position:relative;width:100%;max-width:380px;margin:0 auto;overflow:hidden;}
 .letter-back{
   width:100%;
   display:block;
   position:relative;
   z-index:1;
-}
-/* 봉투 전체에 은은한 외부광선(투명도 20%) 적용 */
-.letter-box{
-  box-shadow: 0 0 20px rgba(94, 103, 110, 0.2);
+  filter: drop-shadow(0 0 15px rgba(94, 103, 110, 0.2));
 }
 
 .letter-paper-wrap{
