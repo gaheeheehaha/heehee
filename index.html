@@ -27,11 +27,18 @@ h1,h2,.serif{font-family:'Nanum Myeongjo',serif;}
 section{padding:64px 28px;text-align:center;border-bottom:1px solid var(--line);}
 h2{font-size:15px;letter-spacing:.4em;color:var(--ice-deep);font-weight:700;margin:0 0 34px;}
 
-/* snow */
+/* snow - 업그레이드된 풍성한 눈 내리기 효과 */
 #snow{position:fixed;inset:0;pointer-events:none;z-index:5;overflow:hidden;}
-.flake{position:absolute;top:-10px;color:#ffffffcc;font-size:14px;animation:fall linear infinite;}
-@media (prefers-color-scheme: dark){ .flake{color:#ffffff55;} }
-@keyframes fall{to{transform:translateY(110vh) translateX(var(--dx,0));}}
+.flake{position:absolute;top:-20px;color:#ffffff;font-size:12px;animation:fall linear infinite, sway ease-in-out infinite;}
+@media (prefers-color-scheme: dark){ .flake{color:#ffffff88;} }
+@keyframes fall{
+  0%{transform:translateY(-20px);}
+  100%{transform:translateY(105vh);}
+}
+@keyframes sway{
+  0%,100%{margin-left:0px;}
+  50%{margin-left:25px;}
+}
 
 /* hero */
 .hero{position:relative;padding:0;height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;background:linear-gradient(180deg,#e9f1f5,var(--bg));}
@@ -165,22 +172,21 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
     </div>
   </section>
 
-  <footer>❄ 신랑 &amp; 신부의 결혼식에 함께해주셔서 감사합니다 ❄</footer>
+  <footer>❄ 신랑 &amp; 신부의 결혼식에 함께해주셔서 감사합니다 <footer>
 </div>
 
 <script>
-// snow
+// snow - 풍성하고 자연스러운 눈송이 생성 (45개)
 const snowBox=document.getElementById('snow');
-for(let i=0;i<22;i++){
+for(let i=0; i<45; i++){
   const f=document.createElement('div');
   f.className='flake';
   f.textContent='❄';
   f.style.left=Math.random()*100+'%';
-  f.style.setProperty('--dx',(Math.random()*60-30)+'px');
-  f.style.fontSize=(10+Math.random()*10)+'px';
-  f.style.animationDuration=(8+Math.random()*10)+'s';
-  f.style.animationDelay=(Math.random()*10)+'s';
-  f.style.opacity=0.4+Math.random()*0.5;
+  f.style.fontSize=(8+Math.random()*10)+'px';
+  f.style.animationDuration=(5+Math.random()*7)+'s, '+(3+Math.random()*3)+'s';
+  f.style.animationDelay=(Math.random()*5)+'s, 0s';
+  f.style.opacity=0.3+Math.random()*0.6;
   snowBox.appendChild(f);
 }
 
