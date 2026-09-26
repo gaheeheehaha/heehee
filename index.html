@@ -65,7 +65,6 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 10px;}
 .letter-box.active .letter-paper-wrap{ transform:translate(-50%, -8%); }
 .letter-paper-img{width:100%;display:block;}
 
-/* 좌우 패딩을 8%로 줄여서 마진 영역을 넓히고 줄바꿈 오류 방지 */
 .letter-text{
   position:absolute; inset:0; 
   padding:60px 8% 16%; 
@@ -87,7 +86,7 @@ table.cal td{padding:6px 0;vertical-align:middle;}
 table.cal td.active{font-weight:700;}
 table.cal td.active span{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;background:var(--point);border-radius:50%;color:#fff;}
 
-/* ===== 갤러리 (원본 비율 그대로 3x3 정렬) ===== */
+/* ===== 갤러리 (3x3 정렬) ===== */
 .grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:6px;}
 .grid .ph{background:var(--bg);border:1px solid var(--line);cursor:pointer;overflow:hidden;border-radius:4px;transition:opacity .2s;}
 .grid .ph:active{opacity:0.8;}
@@ -143,7 +142,7 @@ table.cal td.active span{display:inline-flex;align-items:center;justify-content:
 .acc-body{max-height:0;overflow:hidden;transition:max-height .3s ease;}
 .acc-row{padding:12px 18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:13px;}
 .acc-row .who{color:var(--ink-soft);display:block;font-size:11px;margin-bottom:2px;}
-.acc-row button{border:none;background:var(--point);color:#fff;font-size:11px;padding:6px 12px;border-radius:14px;}
+.acc-row button{border:none;background:var(--point);color:#fff;font-size:11px;padding:6px 12px;border-radius:14px;cursor:pointer;}
 
 footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);letter-spacing:.1em;}
 </style>
@@ -220,7 +219,7 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
     </table>
   </section>
 
-  <!-- GALLERY 영역 (3x3 그리드, 원본 비율 유지, img_1 ~ img_9 적용) -->
+  <!-- GALLERY 영역 (3x3 그리드) -->
   <section class="gallery">
     <h2 class="serif-en">GALLERY</h2>
     <div class="grid">
@@ -325,12 +324,12 @@ function openLightbox(index) {
   currentIndex = index;
   document.getElementById('lightboxImg').src = images[currentIndex];
   lightbox.classList.add('active');
-  document.body.style.overflow = 'hidden'; // 배경 스크롤 방지
+  document.body.style.overflow = 'hidden';
 }
 
 function closeLightbox() {
   lightbox.classList.remove('active');
-  document.body.style.overflow = ''; // 배경 스크롤 복구
+  document.body.style.overflow = '';
 }
 
 function changeSlide(direction) {
@@ -376,12 +375,18 @@ function handleSwipe() {
 // accordion
 function toggleAcc(id){
   const el=document.getElementById(id).querySelector('.acc-body');
-  el.style.maxHeight = el.style.maxHeight ? '' : el.scrollHeight+'px';
+  el.style.maxHeight = el.style.maxHeight && el.style.maxHeight !== '0px' ? '' : el.scrollHeight+'px';
 }
 
 // copy
 function copyText(t){
-  try{ navigator.clipboard.writeText(t); alert('복사되었습니다: '+t); }catch(e){ alert(t); }
+  try{ 
+    navigator.clipboard.writeText(t).then(() => {
+      alert('복사되었습니다: '+t); 
+    }); 
+  }catch(e){ 
+    alert(t); 
+  }
 }
 function copyAddr(){ copyText(document.getElementById('addrText').textContent); }
 </script>
