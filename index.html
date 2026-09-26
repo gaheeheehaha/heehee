@@ -3,7 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>가희♥형민 결혼해요!</title>
+<title>가희♥형민 결혼합니다!</title>
+
+<!-- 카카오톡 및 SNS 공유 미리보기 (Open Graph 태그) -->
+<meta property="og:title" content="서형민 · 김가희 결혼합니다">
+<meta property="og:description" content="2027년 1월 17일 일요일 오전 10시 30분 / L65호텔웨딩컨벤션 6층 가든홀">
+<meta property="og:image" content="main.jpg">
+<meta property="og:url" content="https://gaheeheehaha.github.io">
+
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,15 +48,19 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 10px;}
 .scroll-cue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-family:'EB Garamond',serif;font-size:13px;color:#fff;letter-spacing:.35em;text-shadow:0 1px 3px rgba(0,0,0,.5);z-index:2;}
 
 .greeting{background:var(--card);padding:64px 20px 56px;}
-.hero-info{margin-bottom:30px;}
+.hero-info{margin-bottom:45px;} /* 이름 영역과 아래 편지봉투 사이의 간격을 넓혀서 위쪽 글자를 가리지 않게 함 */
 .names{font-size:30px;font-weight:700;margin:0 0 14px;letter-spacing:.05em;font-family:'Pretendard',sans-serif;}
 .names .amp{color:var(--point);font-weight:400;margin:0 8px;}
 .hero-date{font-size:15px;color:var(--ink);letter-spacing:.06em;margin:0 0 6px;font-weight:500;}
 .hero-venue{font-size:13px;color:var(--point);letter-spacing:.1em;margin:0;}
 .orn{color:var(--point);font-size:20px;margin-bottom:24px;}
 
-/* ===== 편지 봉투 영역 (overflow: visible로 수정하여 잘림 방지) ===== */
-.letter-box{position:relative;width:100%;max-width:380px;margin:0 auto;overflow:visible;}
+/* ===== 편지 봉투 영역 ===== */
+.letter-box{
+  position:relative; width:100%; max-width:380px; margin:0 auto; 
+  overflow:visible; 
+  padding-top:110px; /* 종이가 위로 솟아올라도 위쪽 공간이 여유 있도록 확보 */
+}
 .letter-back{
   width:100%;
   display:block;
@@ -58,17 +69,17 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 10px;}
 }
 
 .letter-paper-wrap{
-  position:absolute; left:50%; top:10px; width:92%; z-index:2;
-  transform:translate(-50%, 45%);
+  position:absolute; left:50%; top:120px; width:92%; z-index:2;
+  transform:translate(-50%, 35%);
   transition:transform 1.2s cubic-bezier(.16,1,.3,1);
 }
-/* 편지가 위로 쑥 올라오도록 설정 (-38%로 조절하여 여유 있게 올라오게 함) */
-.letter-box.active .letter-paper-wrap{ transform:translate(-50%, -38%); }
+/* 요청하신 -14% 위치로 종이가 쏙 올라오면서 부모님 성함 아래 여백이 자연스럽게 넓어짐 */
+.letter-box.active .letter-paper-wrap{ transform:translate(-50%, -14%); }
 .letter-paper-img{width:100%;display:block;}
 
 .letter-text{
   position:absolute; inset:0; 
-  padding:50px 8% 24px; 
+  padding:50px 8% 28px; /* 종이 내부 하단 패딩을 늘려 부모님 성함 아래에 여백을 줌 */
   display:flex; flex-direction:column; justify-content:flex-start; align-items:center; text-align:center;
 }
 .msg{font-size:13px;color:var(--ink);white-space:pre-line;margin:0 0 14px 0;line-height:1.7;}
@@ -87,7 +98,7 @@ table.cal td{padding:6px 0;vertical-align:middle;}
 table.cal td.active{font-weight:700;}
 table.cal td.active span{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;background:var(--point);border-radius:50%;color:#fff;}
 
-/* ===== 갤러리 (3x3 정렬) ===== */
+/* ===== GALLERY 영역 ===== */
 .grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:6px;}
 .grid .ph{background:var(--bg);border:1px solid var(--line);cursor:pointer;overflow:hidden;border-radius:4px;transition:opacity .2s;}
 .grid .ph:active{opacity:0.8;}
