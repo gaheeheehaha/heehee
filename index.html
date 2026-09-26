@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>신랑 ♥ 신부 결혼합니다</title>
+<title>가희♥형민 결혼해요!</title>
 <!-- 프리텐다드 웹 폰트 적용 -->
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +23,19 @@
 :root[data-theme="dark"]{ --bg:#ffffff; --ink:#243240; --ink-soft:#5b6b78; --card:#cad1d8; --line:#bcd0dc; }
 *{box-sizing:border-box;}
 html{scroll-padding-top:env(safe-area-inset-top,0px);}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;font-weight:300;line-height:1.8;overflow-x:hidden;}
+
+/* 폰트 세팅에 글리프 코드(ss01, ss02, ss08) 적용 완료 */
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  font-feature-settings: "ss01", "ss02", "ss08";
+  font-weight:300;
+  line-height:1.8;
+  overflow-x:hidden;
+}
+
 h1,h2,.serif{font-family:'Nanum Myeongjo',serif;}
 .wrap{max-width:480px;margin:0 auto;position:relative;background:var(--card);}
 section{padding:64px 28px;text-align:center;border-bottom:1px solid var(--line);}
@@ -114,19 +126,22 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
   <section class="greeting">
     <!-- 두 번째 영역으로 이동한 신랑신부 정보 및 초대 메시지 -->
     <div class="hero-info">
-      <h1 class="names">신랑<span class="amp">&amp;</span>신부</h1>
-      <p class="hero-date">2026. 12. 19 SAT PM 1:00</p>
-      <p class="hero-venue">예식장 이름 · 홀 이름</p>
+      <h1 class="names">서형민<span class="amp">&amp;</span>김가희</h1>
+      <p class="hero-date">2027. 1. 19 SAT AM 10:30</p>
+      <p class="hero-venue">L65호텔웨딩컨벤션 · 6층 가든홀</p>
     </div>
     <div class="orn">❋</div>
-    <p class="msg">첫눈이 내리던 겨울날, 우리는
-서로에게 스며들었습니다.
-
-이제 함께 걸어갈 계절 앞에서
-가장 소중한 분들을 초대합니다.</p>
+    <p class="msg">늘 함께일 것을 알았기에
+시간을 세어가며 지나온 날들은 아니었습니다.
+어느덧 11년, 저희는 여전히 서로의 곁에 있습니다.
+거창한 약속을 얹기보다는
+지금껏 그래왔듯 앞으로도
+서로가 서로에게 제일 자연스러운 이름이 되려 합니다.
+가장 빛나는 하루에 새겨둘
+축복을 더해 주시면 더없는 기쁨이 되겠습니다.</p>
     <div class="parents">
-      <span>OOO · OOO의 장남 <b>신랑 이름</b></span>
-      <span>OOO · OOO의 장녀 <b>신부 이름</b></span>
+      <span>성기철 · 권귀숙의 아들 <b>서형민 이름</b></span>
+      <span>故김용수 · 김미화의 딸 <b>김가희 이름</b></span>
     </div>
   </section>
 
