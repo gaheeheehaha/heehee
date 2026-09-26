@@ -95,8 +95,9 @@ table.cal td.active{display:inline-block;width:26px;height:26px;line-height:26px
 /* location */
 .venue-name{font-size:18px;font-weight:700;margin:0 0 4px;}
 .addr{font-size:13px;color:var(--ink-soft);margin:0 0 16px;}
-.copy-btn{border:1px solid var(--ice-deep);background:var(--card);color:var(--ink);font-size:12px;padding:6px 14px;border-radius:20px;cursor:pointer;margin-bottom:30px;}
-.map-ph{height:160px;background:var(--bg);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:13px;margin-bottom:26px;}
+.map-btn-wrap{display:flex;gap:8px;justify-content:center;margin-bottom:26px;}
+.copy-btn, .map-link-btn{border:1px solid var(--ice-deep);background:var(--card);color:var(--ink);font-size:12px;padding:8px 16px;border-radius:20px;cursor:pointer;text-decoration:none;display:inline-block;}
+.map-link-btn{background:var(--ice-deep);color:#fff;}
 .trans{text-align:left;font-size:13px;color:var(--ink);display:flex;flex-direction:column;gap:14px;}
 .trans b{color:var(--ink);display:block;margin-bottom:3px;font-weight:500;}
 
@@ -140,8 +141,8 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
 가장 빛나는 하루에 새겨둘
 축복을 더해 주시면 더없는 기쁨이 되겠습니다.</p>
     <div class="parents">
-      <span>성기철 · 권귀숙의 아들 <b>서형민 이름</b></span>
-      <span>故김용수 · 김미화의 딸 <b>김가희 이름</b></span>
+      <span>성기철 · 권귀숙의 아들 <b>서형민</b></span>
+      <span>故김용수 · 김미화의 딸 <b>김가희</b></span>
     </div>
   </section>
 
@@ -160,25 +161,28 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
     <table class="cal">
       <thead><tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr></thead>
       <tbody>
-        <tr><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
-        <tr><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
-        <tr><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td><span class="active">19</span></td></tr>
-        <tr><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td></tr>
-        <tr><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td>1</td></tr>
+        <tr><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+        <tr><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td></tr>
+        <tr><td>16</td><td>17</td><td>18</td><td><span class="active">19</span></td><td>20</td><td>21</td><td>22</td></tr>
+        <tr><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td></tr>
+        <tr><td>30</td><td>31</td><td></td><td></td><td></td><td></td><td></td></tr>
       </tbody>
     </table>
   </section>
 
   <section class="location">
     <h2>LOCATION</h2>
-    <p class="venue-name">예식장 이름</p>
-    <p class="addr" id="addrText">서울특별시 OO구 OO로 00 (지번 주소 입력)</p>
-    <button class="copy-btn" onclick="copyAddr()">주소 복사</button>
-    <div class="map-ph">지도는 이미지로 첨부하시거나<br>네이버지도 링크를 연결해드릴게요</div>
+    <p class="venue-name">L65호텔웨딩컨벤션</p>
+    <p class="addr" id="addrText">서울 동대문구 왕산로 214 롯데캐슬 SKY-L65 6층</p>
+    <div class="map-btn-wrap">
+      <button class="copy-btn" onclick="copyAddr()">주소 복사</button>
+      <a class="map-link-btn" href="https://map.naver.com/p/search/L65%ED%98%B8%ED%85%94%EC%9B%A8%EB%94%A9/place/13171608?placePath=%2Fhome%3Fbk_query%3DL65%ED%98%B8%ED%85%94%EC%9B%A8%EB%94%A9%26entry%3Dpll%26from%3Dnx%26fromNxList%3Dtrue%26from%3Dmap%26fromPanelNum%3D2%26timestamp%3D202609261451%26locale%3Dko%26svcName%3Dmap_pcv5%26searchText%3DL65%ED%98%B8%ED%85%94%EC%9B%A8%EB%94%A9&placeSearchOption=bk_query%3DL65%25ED%2598%25B8%25ED%2585%2594%25EC%259B%25A8%25EB%2594%25A9%26entry%3Dpll%26fromNxList%3Dtrue%26originalQuery%3DL65%25ED%2598%25B8%25ED%2585%2594%25EC%259B%25A8%25EB%2594%25A9%26x%3D127.077416%26y%3D37.602053&searchType=place&c=15.00,0,0,0,dh" target="_blank">네이버 지도 보기</a>
+    </div>
     <div class="trans">
-      <div><b>지하철</b>OO역 O번 출구 도보 5분</div>
-      <div><b>버스</b>OOO, OOO번 · OO정류장 하차</div>
-      <div><b>자가용</b>내비게이션 'OO웨딩홀' 검색</div>
+      <div><b>지하철</b>1호선/경의중앙선/수인분당선 청량리역 연결</div>
+      <div><b>버스</b>청량리역환승센터 하차 도보 3~5분</div>
+      <div><b>자가용</b>'L65호텔웨딩' 검색 (건물 내 주차장 이용)</div>
     </div>
   </section>
 
@@ -219,9 +223,9 @@ for(let i=0; i<40; i++){
   snowBox.appendChild(f);
 }
 
-// d-day
+// d-day (2027년 1월 19일 기준)
 function updateDday(){
-  const target=new Date('2026-12-19T13:00:00');
+  const target=new Date('2027-01-19T10:30:00');
   const now=new Date();
   const diff=target-now;
   const el=document.getElementById('dday');
