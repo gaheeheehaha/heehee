@@ -108,12 +108,12 @@ table.cal td{padding:6px 0;vertical-align:middle;}
 table.cal td.active{font-weight:700;}
 table.cal td.active span{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;background:var(--point);border-radius:50%;color:#fff;}
 
-/* ===== GALLERY 영역 ===== */
+/* ===== GALLERY 영역 (원본 비율 유지 및 여백 확대) ===== */
 .grid{
   display:grid;
   grid-template-columns:repeat(3, 1fr);
-  gap:12px;
-  padding:0 8px;
+  gap:16px; /* 이미지 사이 간격을 넓게 조정 */
+  padding:0 12px; /* 양옆 여백 추가 */
 }
 .grid .ph{
   background:var(--bg);
@@ -121,14 +121,13 @@ table.cal td.active span{display:inline-flex;align-items:center;justify-content:
   cursor:pointer;
   overflow:hidden;
   border-radius:6px;
-  aspect-ratio: 1 / 1;
   transition:opacity .2s;
 }
 .grid .ph:active{opacity:0.8;}
 .grid .ph img{
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit:cover; /* 원본 비율을 유지하면서 깔끔하게 배치되도록 설정 */
   display:block;
 }
 
@@ -193,9 +192,9 @@ table.cal td.active span{display:inline-flex;align-items:center;justify-content:
 .trans{text-align:left;font-size:13px;color:var(--ink);display:flex;flex-direction:column;gap:14px;}
 .trans b{color:var(--ink);display:block;margin-bottom:3px;font-weight:500;}
 
-/* ===== 마음 전하실 곳 (아코디언 제거 및 버튼 레이아웃 수정) ===== */
-.acc-group{border:1px solid var(--line);background:var(--bg);border-radius:6px;margin-bottom:14px;overflow:hidden;text-align:left;}
-.acc-title{padding:14px 18px;font-size:14px;font-weight:600;color:var(--point);border-bottom:1px solid var(--line);background:rgba(255,255,255,0.4);}
+/* ===== 마음 전하실 곳 (배경색 흰색 #ffffff 적용) ===== */
+.acc-group{border:1px solid var(--line);background:#ffffff;border-radius:6px;margin-bottom:14px;overflow:hidden;text-align:left;}
+.acc-title{padding:14px 18px;font-size:14px;font-weight:600;color:var(--point);border-bottom:1px solid var(--line);background:rgba(14,105,161,0.04);}
 .acc-row{padding:12px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:13px;}
 .acc-row:last-child{border-bottom:none;}
 .acc-row .who{color:var(--ink-soft);display:block;font-size:11px;margin-bottom:2px;}
@@ -203,7 +202,7 @@ table.cal td.active span{display:inline-flex;align-items:center;justify-content:
 .acc-btns button, .acc-btns a{
   border:none;background:var(--point);color:#fff;font-size:11px;padding:6px 12px;border-radius:14px;cursor:pointer;text-decoration:none;text-align:center;line-height:normal;
 }
-.acc-btns .call-btn{background:#5b6b78;} /* 전화 버튼 색상 구분 (원하시는 경우 스타일 조정 가능) */
+.acc-btns .call-btn{background:#5b6b78;}
 
 footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);letter-spacing:.1em;}
 </style>
