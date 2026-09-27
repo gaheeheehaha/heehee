@@ -108,12 +108,12 @@ table.cal td{padding:6px 0;vertical-align:middle;}
 table.cal td.active{font-weight:700;}
 table.cal td.active span{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;background:var(--point);border-radius:50%;color:#fff;}
 
-/* ===== GALLERY 영역 (크기 축소 및 여백 확대) ===== */
+/* ===== GALLERY 영역 ===== */
 .grid{
   display:grid;
   grid-template-columns:repeat(3, 1fr);
-  gap:12px; /* 이미지 사이 간격 여유있게 확대 */
-  padding:0 8px; /* 양옆 여백 추가하여 전체적으로 아담하게 보이도록 조정 */
+  gap:12px;
+  padding:0 8px;
 }
 .grid .ph{
   background:var(--bg);
@@ -121,14 +121,14 @@ table.cal td.active span{display:inline-flex;align-items:center;justify-content:
   cursor:pointer;
   overflow:hidden;
   border-radius:6px;
-  aspect-ratio: 1 / 1; /* 정사각형 비율로 유지하여 깔끔하게 배치 */
+  aspect-ratio: 1 / 1;
   transition:opacity .2s;
 }
 .grid .ph:active{opacity:0.8;}
 .grid .ph img{
   width:100%;
   height:100%;
-  object-fit:cover; /* 영역에 꽉 차게 잘리도록 설정 */
+  object-fit:cover;
   display:block;
 }
 
@@ -169,7 +169,6 @@ table.cal td.active span{display:inline-flex;align-items:center;justify-content:
 .venue-name{font-size:18px;font-weight:700;margin:0 0 4px;}
 .addr{font-size:13px;color:var(--ink-soft);margin:0 0 16px;}
 
-/* map-card를 이미지로 변경 */
 .map-card{
   display:block;
   width:100%;
@@ -194,12 +193,17 @@ table.cal td.active span{display:inline-flex;align-items:center;justify-content:
 .trans{text-align:left;font-size:13px;color:var(--ink);display:flex;flex-direction:column;gap:14px;}
 .trans b{color:var(--ink);display:block;margin-bottom:3px;font-weight:500;}
 
-.acc{border:1px solid var(--line);background:var(--bg);border-radius:4px;margin-bottom:10px;overflow:hidden;text-align:left;}
-.acc-head{padding:14px 18px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:14px;font-weight:500;}
-.acc-body{max-height:0;overflow:hidden;transition:max-height .3s ease;}
-.acc-row{padding:12px 18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:13px;}
+/* ===== 마음 전하실 곳 (아코디언 제거 및 버튼 레이아웃 수정) ===== */
+.acc-group{border:1px solid var(--line);background:var(--bg);border-radius:6px;margin-bottom:14px;overflow:hidden;text-align:left;}
+.acc-title{padding:14px 18px;font-size:14px;font-weight:600;color:var(--point);border-bottom:1px solid var(--line);background:rgba(255,255,255,0.4);}
+.acc-row{padding:12px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:13px;}
+.acc-row:last-child{border-bottom:none;}
 .acc-row .who{color:var(--ink-soft);display:block;font-size:11px;margin-bottom:2px;}
-.acc-row button{border:none;background:var(--point);color:#fff;font-size:11px;padding:6px 12px;border-radius:14px;cursor:pointer;}
+.acc-btns{display:flex;gap:6px;align-items:center;}
+.acc-btns button, .acc-btns a{
+  border:none;background:var(--point);color:#fff;font-size:11px;padding:6px 12px;border-radius:14px;cursor:pointer;text-decoration:none;text-align:center;line-height:normal;
+}
+.acc-btns .call-btn{background:#5b6b78;} /* 전화 버튼 색상 구분 (원하시는 경우 스타일 조정 가능) */
 
 footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);letter-spacing:.1em;}
 </style>
@@ -276,7 +280,7 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
     </table>
   </section>
 
-  <!-- GALLERY 영역 (크기 및 여백 조정 완료) -->
+  <!-- GALLERY 영역 -->
   <section class="gallery">
     <h2 class="serif-en">GALLERY</h2>
     <div class="grid">
@@ -297,7 +301,6 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
     <p class="venue-name">L65호텔웨딩컨벤션</p>
     <p class="addr" id="addrText">서울 동대문구 왕산로 214 롯데캐슬 SKY-L65 6층</p>
     
-    <!-- 지도 영역을 map.jpg 이미지로 교체 (클릭 시 네이버 지도 연동 유지) -->
     <a class="map-card" href="https://map.naver.com/p/search/L65%ED%98%B8%ED%85%94%EC%9B%A8%EB%94%A9/place/13171608" target="_blank">
       <img src="map.jpg" alt="오시는 길 지도">
     </a>
@@ -315,18 +318,49 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
 
   <section class="account">
     <h2>마음 전하실 곳</h2>
-    <div class="acc" id="accGroom">
-      <div class="acc-head" onclick="toggleAcc('accGroom')"><span>신랑측 계좌번호</span><span>＋</span></div>
-      <div class="acc-body">
-        <div class="acc-row"><div><span class="who">신랑</span>OO은행 000-0000-0000</div><button onclick="copyText('OO은행 000-0000-0000')">복사</button></div>
-        <div class="acc-row"><div><span class="who">신랑 아버지</span>OO은행 000-0000-0000</div><button onclick="copyText('OO은행 000-0000-0000')">복사</button></div>
+    
+    <!-- 신랑측 계좌 -->
+    <div class="acc-group">
+      <div class="acc-title">신랑측 계좌번호</div>
+      <div class="acc-row">
+        <div><span class="who">신랑 (서형민)</span>OO은행 000-0000-0000</div>
+        <div class="acc-btns">
+          <button onclick="copyText('OO은행 000-0000-0000')">복사</button>
+          <a class="call-btn" href="tel:010-0000-0000">전화</a>
+        </div>
+      </div>
+      <div class="acc-row">
+        <div><span class="who">신랑 어머니 (권귀숙)</span>OO은행 000-0000-0000</div>
+        <div class="acc-btns">
+          <button onclick="copyText('OO은행 000-0000-0000')">복사</button>
+          <a class="call-btn" href="tel:010-0000-0000">전화</a>
+        </div>
+      </div>
+      <div class="acc-row">
+        <div><span class="who">신랑 아버지 (성기철)</span>OO은행 000-0000-0000</div>
+        <div class="acc-btns">
+          <button onclick="copyText('OO은행 000-0000-0000')">복사</button>
+          <a class="call-btn" href="tel:010-0000-0000">전화</a>
+        </div>
       </div>
     </div>
-    <div class="acc" id="accBride">
-      <div class="acc-head" onclick="toggleAcc('accBride')"><span>신부측 계좌번호</span><span>＋</span></div>
-      <div class="acc-body">
-        <div class="acc-row"><div><span class="who">신부</span>OO은행 000-0000-0000</div><button onclick="copyText('OO은행 000-0000-0000')">복사</button></div>
-        <div class="acc-row"><div><span class="who">신부 어머니</span>OO은행 000-0000-0000</div><button onclick="copyText('OO은행 000-0000-0000')">복사</button></div>
+
+    <!-- 신부측 계좌 -->
+    <div class="acc-group">
+      <div class="acc-title">신부측 계좌번호</div>
+      <div class="acc-row">
+        <div><span class="who">신부 (김가희)</span>OO은행 000-0000-0000</div>
+        <div class="acc-btns">
+          <button onclick="copyText('OO은행 000-0000-0000')">복사</button>
+          <a class="call-btn" href="tel:010-0000-0000">전화</a>
+        </div>
+      </div>
+      <div class="acc-row">
+        <div><span class="who">신부 어머니 (김미화)</span>OO은행 000-0000-0000</div>
+        <div class="acc-btns">
+          <button onclick="copyText('OO은행 000-0000-0000')">복사</button>
+          <a class="call-btn" href="tel:010-0000-0000">전화</a>
+        </div>
       </div>
     </div>
   </section>
@@ -428,12 +462,6 @@ function handleSwipe() {
   if (touchEndX > touchStartX + threshold) {
     changeSlide(-1);
   }
-}
-
-// accordion
-function toggleAcc(id){
-  const el=document.getElementById(id).querySelector('.acc-body');
-  el.style.maxHeight = el.style.maxHeight && el.style.maxHeight !== '0px' ? '' : el.scrollHeight+'px';
 }
 
 // copy
