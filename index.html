@@ -248,7 +248,7 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
 
 <div class="wrap">
 
-  <!-- 모청 영역 내부 우측 상단 고정 BGM 버튼 -->
+  <!-- 모청 영역 내부 우측 상단 고정 BGM 버튼 (디폴트 ON 표시) -->
   <button class="bgm-btn" id="bgmBtn" onclick="toggleBgm()">
     <span id="bgmIcon">🎶</span> <span id="bgmText">BGM ON</span>
   </button>
@@ -414,24 +414,22 @@ for(let i=0; i<40; i++){
   snowBox.appendChild(f);
 }
 
-// ===== BGM 제어 스크립트 (디폴트 ON) =====
+// ===== BGM 제어 스크립트 (모바일 정책 완벽 대응) =====
 const bgmAudio = document.getElementById('bgmAudio');
 const bgmBtn = document.getElementById('bgmBtn');
 const bgmText = document.getElementById('bgmText');
 const bgmIcon = document.getElementById('bgmIcon');
-let isBgmPlaying = true; // 디폴트 ON
+let isBgmPlaying = false;
 
-window.addEventListener('DOMContentLoaded', () => {
-  bgmAudio.play().then(() => {
-    isBgmPlaying = true;
-    bgmText.textContent = "BGM ON";
-    bgmIcon.textContent = "🎶";
-  }).catch(() => {
-    // 브라우저 정책으로 자동재생이 막힌 경우 첫 터치 시 재생 대기
-    isBgmPlaying = false;
-    bgmText.textContent = "BGM OFF";
-    bgmIcon.textContent = "🎵";
-  });
+// 페이지 진입 시 자동 재생 시도 (브라우저가 막으면 catch에서 대기)
+bgmAudio.play().then(() => {
+  isBgmPlaying = true;
+  bgmText.textContent = "BGM ON";
+  bgmIcon.textContent = "🎶";
+}).catch(() => {
+  isBgmPlaying = false;
+  bgmText.textContent = "BGM OFF";
+  bgmIcon.textContent = "🎵";
 });
 
 function toggleBgm() {
@@ -451,7 +449,7 @@ function toggleBgm() {
   }
 }
 
-// 브라우저 자동재생 정책 대응 (페이지 내 첫 터치/클릭 시 재생 유도)
+// 사용자가 화면을 처음 터치(클릭)하는 순간 브라우저 제한이 풀리며 BGM 자동 켜짐
 window.addEventListener('click', function initAudioOnce() {
   if (!isBgmPlaying) {
     bgmAudio.play().then(() => {
