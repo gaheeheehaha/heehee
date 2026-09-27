@@ -8,7 +8,7 @@
 <!-- 카카오톡 및 SNS 공유 미리보기 (Open Graph 태그) -->
 <meta property="og:title" content="서형민 · 김가희 결혼합니다">
 <meta property="og:description" content="2027년 1월 17일 일요일 오전 10시 30분 / L65호텔웨딩컨벤션 6층 가든홀">
-<meta property="og:image" content="main.jpg">
+<meta property="og:image" content="https://gaheeheehaha.github.io/main.jpg">
 <meta property="og:url" content="https://gaheeheehaha.github.io">
 
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
@@ -83,7 +83,6 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 10px;}
 }
 .msg{font-size:13px;color:var(--ink);white-space:pre-line;margin:0 0 14px 0;line-height:1.7;}
 
-/* 부모님 성함 영역 (글자 크기 12.5px, 상단 패딩 20px 적용) */
 .parents{
   font-size:12.5px;
   color:var(--ink);
@@ -109,11 +108,29 @@ table.cal td{padding:6px 0;vertical-align:middle;}
 table.cal td.active{font-weight:700;}
 table.cal td.active span{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;background:var(--point);border-radius:50%;color:#fff;}
 
-/* ===== GALLERY 영역 ===== */
-.grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:6px;}
-.grid .ph{background:var(--bg);border:1px solid var(--line);cursor:pointer;overflow:hidden;border-radius:4px;transition:opacity .2s;}
+/* ===== GALLERY 영역 (크기 축소 및 여백 확대) ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:12px; /* 이미지 사이 간격 여유있게 확대 */
+  padding:0 8px; /* 양옆 여백 추가하여 전체적으로 아담하게 보이도록 조정 */
+}
+.grid .ph{
+  background:var(--bg);
+  border:1px solid var(--line);
+  cursor:pointer;
+  overflow:hidden;
+  border-radius:6px;
+  aspect-ratio: 1 / 1; /* 정사각형 비율로 유지하여 깔끔하게 배치 */
+  transition:opacity .2s;
+}
 .grid .ph:active{opacity:0.8;}
-.grid .ph img{width:100%;height:auto;display:block;}
+.grid .ph img{
+  width:100%;
+  height:100%;
+  object-fit:cover; /* 영역에 꽉 차게 잘리도록 설정 */
+  display:block;
+}
 
 /* ===== 갤러리 팝업(라이트박스) 스타일 ===== */
 #lightbox{
@@ -152,8 +169,25 @@ table.cal td.active span{display:inline-flex;align-items:center;justify-content:
 .venue-name{font-size:18px;font-weight:700;margin:0 0 4px;}
 .addr{font-size:13px;color:var(--ink-soft);margin:0 0 16px;}
 
-.map-card{display:block;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:24px;text-decoration:none;color:var(--ink);margin-bottom:20px;box-shadow:0 4px 12px rgba(0,0,0,.05);}
-.map-card-text{font-size:14px;font-weight:500;color:var(--point);display:flex;align-items:center;justify-content:center;gap:6px;}
+/* map-card를 이미지로 변경 */
+.map-card{
+  display:block;
+  width:100%;
+  border-radius:8px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  margin-bottom:16px;
+  box-shadow:0 4px 12px rgba(0,0,0,.05);
+  transition: opacity .2s;
+}
+.map-card:active{opacity:0.9;}
+.map-card img{
+  width:100%;
+  height:auto;
+  display:block;
+  object-fit:cover;
+}
+
 .map-btn-wrap{display:flex;gap:8px;justify-content:center;margin-bottom:26px;}
 .copy-btn,.map-link-btn{border:1px solid var(--point);background:var(--card);color:var(--ink);font-size:12px;padding:8px 16px;border-radius:20px;cursor:pointer;text-decoration:none;display:inline-block;}
 .map-link-btn{background:var(--point);color:#fff;}
@@ -242,7 +276,7 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
     </table>
   </section>
 
-  <!-- GALLERY 영역 (3x3 그리드) -->
+  <!-- GALLERY 영역 (크기 및 여백 조정 완료) -->
   <section class="gallery">
     <h2 class="serif-en">GALLERY</h2>
     <div class="grid">
@@ -263,8 +297,9 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
     <p class="venue-name">L65호텔웨딩컨벤션</p>
     <p class="addr" id="addrText">서울 동대문구 왕산로 214 롯데캐슬 SKY-L65 6층</p>
     
+    <!-- 지도 영역을 map.jpg 이미지로 교체 (클릭 시 네이버 지도 연동 유지) -->
     <a class="map-card" href="https://map.naver.com/p/search/L65%ED%98%B8%ED%85%94%EC%9B%A8%EB%94%A9/place/13171608" target="_blank">
-      <div class="map-card-text">📍 네이버 지도에서 위치 보기 &gt;</div>
+      <img src="map.jpg" alt="오시는 길 지도">
     </a>
 
     <div class="map-btn-wrap">
