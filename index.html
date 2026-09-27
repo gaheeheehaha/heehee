@@ -38,11 +38,11 @@ h1,.serif{font-family:'Nanum Myeongjo',serif;}
 section{padding:64px 28px;text-align:center;border-bottom:1px solid var(--line);}
 h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 10px;}
 
-/* ===== BGM 버튼 스타일 (.wrap 내부 우측 상단 고정) ===== */
+/* ===== BGM 버튼 스타일 (스크롤해도 우측 상단 고정) ===== */
 .bgm-btn{
-  position:absolute;
+  position:fixed;
   top:20px;
-  right:20px;
+  right:calc(50% - 230px); /* 모청 카드(.wrap max-width 480px 기준 우측 정렬) */
   z-index:99999;
   background:rgba(255, 255, 255, 0.5);
   color:var(--ink);
@@ -59,6 +59,13 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 10px;}
   transition:background 0.2s;
 }
 .bgm-btn:active{background:rgba(255, 255, 255, 0.8);}
+
+/* 화면이 아주 작을 때(모바일 브라우저 폭이 480px 미만일 때) 화면 우측 끝에서 15px 고정 */
+@media(max-width: 500px){
+  .bgm-btn{
+    right:15px;
+  }
+}
 
 #snow{position:fixed;inset:0;pointer-events:none;z-index:5;overflow:hidden;}
 .flake{position:absolute;top:-15px;background:#fff;border-radius:50%;box-shadow:0 0 6px rgba(255,255,255,.8);animation:fall linear infinite,sway ease-in-out infinite;}
@@ -236,6 +243,11 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
 <!-- 배경음악 오디오 객체 -->
 <audio id="bgmAudio" src="music.mp3" loop preload="auto"></audio>
 
+<!-- 스크롤을 내려도 항상 우측 상단에 고정되는 BGM 버튼 -->
+<button class="bgm-btn" id="bgmBtn" onclick="toggleBgm()">
+  <span id="bgmIcon">🎶</span> <span id="bgmText">BGM ON</span>
+</button>
+
 <!-- 갤러리 팝업(라이트박스) 구조 -->
 <div id="lightbox">
   <div class="lightbox-content" id="lightboxContent">
@@ -247,11 +259,6 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
 </div>
 
 <div class="wrap">
-
-  <!-- 모청 영역 내부 우측 상단 고정 BGM 버튼 (디폴트 ON 표시) -->
-  <button class="bgm-btn" id="bgmBtn" onclick="toggleBgm()">
-    <span id="bgmIcon">🎶</span> <span id="bgmText">BGM ON</span>
-  </button>
 
   <section class="hero">
     <div class="photo-frame">
@@ -414,14 +421,13 @@ for(let i=0; i<40; i++){
   snowBox.appendChild(f);
 }
 
-// ===== BGM 제어 스크립트 (모바일 정책 완벽 대응) =====
+// ===== BGM 제어 스크립트 =====
 const bgmAudio = document.getElementById('bgmAudio');
 const bgmBtn = document.getElementById('bgmBtn');
 const bgmText = document.getElementById('bgmText');
 const bgmIcon = document.getElementById('bgmIcon');
 let isBgmPlaying = false;
 
-// 페이지 진입 시 자동 재생 시도 (브라우저가 막으면 catch에서 대기)
 bgmAudio.play().then(() => {
   isBgmPlaying = true;
   bgmText.textContent = "BGM ON";
@@ -449,7 +455,6 @@ function toggleBgm() {
   }
 }
 
-// 사용자가 화면을 처음 터치(클릭)하는 순간 브라우저 제한이 풀리며 BGM 자동 켜짐
 window.addEventListener('click', function initAudioOnce() {
   if (!isBgmPlaying) {
     bgmAudio.play().then(() => {
