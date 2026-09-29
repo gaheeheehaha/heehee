@@ -42,7 +42,7 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 10px;}
 .bgm-btn{
   position:fixed;
   top:20px;
-  right:calc(50% - 230px); /* 모청 카드(.wrap max-width 480px 기준 우측 정렬) */
+  right:calc(50% - 230px);
   z-index:99999;
   background:rgba(255, 255, 255, 0.5);
   color:var(--ink);
@@ -60,7 +60,6 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 10px;}
 }
 .bgm-btn:active{background:rgba(255, 255, 255, 0.8);}
 
-/* 화면이 아주 작을 때(모바일 브라우저 폭이 480px 미만일 때) 화면 우측 끝에서 15px 고정 */
 @media(max-width: 500px){
   .bgm-btn{
     right:15px;
@@ -85,11 +84,15 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 10px;}
 .hero-venue{font-size:13px;color:var(--point);letter-spacing:.1em;margin:0;}
 .orn{color:var(--point);font-size:20px;margin-bottom:24px;}
 
-/* ===== 편지 봉투 영역 ===== */
+/* ===== 편지 봉투 영역 (크로스 브라우징 및 텍스트 잘림 방지 수정) ===== */
 .letter-box{
-  position:relative; width:100%; max-width:380px; margin:0 auto; 
-  overflow:visible; 
-  padding-top:100px; 
+  position:relative;
+  width:100%;
+  max-width:380px;
+  margin:0 auto;
+  overflow:visible;
+  padding-top:160px;
+  padding-bottom:20px;
 }
 .letter-back{
   width:100%;
@@ -99,32 +102,65 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 10px;}
 }
 
 .letter-paper-wrap{
-  position:absolute; left:50%; top:120px; width:92%; z-index:2;
-  transform:translate(-50%, 35%);
-  transition:transform 1.2s cubic-bezier(.16,1,.3,1);
+  position:absolute;
+  left:50%;
+  top:160px;
+  width:90%;
+  z-index:2;
+  transform:translate(-50%, 20%);
+  opacity:0;
+  transition:transform 1.2s cubic-bezier(.16,1,.3,1), opacity 0.5s ease;
+  will-change:transform;
 }
-.letter-box.active .letter-paper-wrap{ transform:translate(-50%, -15%); }
-.letter-paper-img{width:100%;display:block;}
+.letter-box.active .letter-paper-wrap{
+  transform:translate(-50%, -35%);
+  opacity:1;
+}
+.letter-paper-img{
+  width:100%;
+  height:auto;
+  display:block;
+}
 
 .letter-text{
-  position:absolute; inset:0; 
-  padding:45px 8% 28px; 
-  display:flex; flex-direction:column; justify-content:flex-start; align-items:center; text-align:center;
+  position:absolute;
+  inset:0;
+  padding:40px 8% 24px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  word-break:keep-all;
 }
-.msg{font-size:13px;color:var(--ink);white-space:pre-line;margin:0 0 14px 0;line-height:1.7;}
+.msg{
+  font-size:13px;
+  color:var(--ink);
+  white-space:pre-line;
+  margin:0 0 14px 0;
+  line-height:1.75;
+}
 
 .parents{
-  font-size:12.5px;
+  font-size:12px;
   color:var(--ink);
   display:flex;
   flex-direction:column;
   gap:4px;
   border-top:1px solid #cbd5e1;
-  padding-top:20px;
+  padding-top:14px;
   width:100%;
 }
 
-.letter-front{position:absolute;left:0;bottom:0;width:100%;z-index:3;pointer-events:none;display:block;}
+.letter-front{
+  position:absolute;
+  left:0;
+  bottom:20px;
+  width:100%;
+  z-index:3;
+  pointer-events:none;
+  display:block;
+}
 
 /* calendar */
 .cal-subdate{font-size:18px;font-weight:700;color:var(--ink);margin-bottom:16px;letter-spacing:.05em;}
@@ -374,9 +410,8 @@ footer{padding:36px 0;text-align:center;font-size:11px;color:var(--ink-soft);let
         </div>
       </div>
       <div class="acc-row">
-        <div><span class="who">신랑 아버지 (성기철)</span>하나은행 59081-0061-47607</div>
+        <div><span class="who">신랑 아버지 (성기철)</span>010-3742-9636</div>
         <div class="acc-btns">
-          <button onclick="copyText('하나은행 59081-0061-47607')">복사</button>
           <a class="call-btn" href="tel:010-3742-9636">전화</a>
         </div>
       </div>
@@ -467,16 +502,19 @@ window.addEventListener('click', function initAudioOnce() {
 }, { once: true });
 
 
-// 편지지 올라오는 애니메이션 감지
+// 편지지 올라오는 애니메이션 감지 보완
+const letterBox = document.getElementById('letterBox');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if(entry.isIntersecting){
       entry.target.classList.add('active');
     }
   });
-}, { threshold: 0.3 });
+}, { threshold: 0.15 });
 
-observer.observe(document.getElementById('letterBox'));
+if(letterBox){
+  observer.observe(letterBox);
+}
 
 // d-day
 function updateDday(){
