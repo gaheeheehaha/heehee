@@ -121,7 +121,7 @@ h2{font-size:18px;color:var(--point);font-weight:600;margin:0 0 10px;}
   display:block;
 }
 
-/* ★ 여백 조율: 45px처럼 휑하지도 않고, 너무 좁지도 않은 딱 적당한 24px 상단 여백 */
+/* ★ 상단 여백 32px: 휑하지도 않고 너무 좁지도 않은 자연스러운 간격 */
 .letter-text{
   position:absolute; 
   inset:0; 
@@ -510,12 +510,12 @@ const letterFront = document.querySelector('.letter-front');
 
 function adjustLetterOpen() {
   if (!letterWrap || !parentsEl || !letterFront) return;
-  // 부모님 성함 하단이 앞봉투 윗선 위로 12px 깔끔하게 드러나는 위치를 픽셀 단위로 정확히 계산
+  // 부모님 성함 하단이 앞봉투 V자 입구에 가깝고 자연스럽게 안착되도록 위치 계산
   const wrapTop = letterWrap.offsetTop;
   const parentsBottom = parentsEl.offsetTop + parentsEl.offsetHeight;
   const frontTop = letterFront.offsetTop;
   
-  const targetY = frontTop - (wrapTop + parentsBottom) - 12;
+  const targetY = frontTop - (wrapTop + parentsBottom) + 24;
   letterWrap.style.setProperty('--open-y', `${targetY}px`);
 }
 
